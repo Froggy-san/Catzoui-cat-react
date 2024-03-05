@@ -48,7 +48,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-electronics.jpg"
+                      src="../public/img/cat-electronics.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -71,7 +71,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-clothing.jpg"
+                      src="./public/img/cat-clothing.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -94,7 +94,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-books.jpg"
+                      src="/public/img/cat-books.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -117,7 +117,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="/public/assets/img/cat-utensils.webp"
+                      src="/public/img/cat-utensils.webp"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
