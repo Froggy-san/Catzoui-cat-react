@@ -36,6 +36,7 @@ import AdminControl from './AdminControl'
 import ProductDescription from '../../components/shared/ProductDescription'
 import ProductPrices from './ProductPrices'
 import ProductTitle from './ProductTitle'
+import useDocumentTitle from '@/hooks/useDocumentTitle'
 
 const ProductDetails = () => {
   const [searchParams] = useSearchParams()
@@ -63,7 +64,7 @@ const ProductDetails = () => {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
   useSetItemFromStorage('rating', rating)
-
+  useDocumentTitle(product?.at(0)?.name || '')
   const random = useMemo(() => {
     return randomYear(2001, 2024)
   }, [productId])
