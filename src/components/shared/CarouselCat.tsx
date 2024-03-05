@@ -117,7 +117,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-utensils.webp"
+                      src="../../.././public/assets/img/cat-utensils.webp"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
