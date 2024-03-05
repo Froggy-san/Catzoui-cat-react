@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { RxCross1 } from 'react-icons/rx'
 import OprationButtonTypes from './OprationButtonTypes'
 import { useCallback } from 'react'
+import { Link } from 'react-scroll'
+import { SCROLL_DURATION } from '@/utils/constants'
 
 // * FilterOperation component is a component, an array of options, it's gonna look like this options = {[{label:all,value:all},{label:clothing,value:clothing}]}, base on every option we are ganna make a button with the label value . and it receives filterFiled where we are going to filter the results based on it's value  so it can be  based on("clothing","electronics",you get the gist...),  and then we set it's value to the one of the options.
 interface Option {
@@ -59,29 +61,31 @@ const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
 
       {filterFiled === 'sortBy' && <OprationButtonTypes type="sort" />}
       {options?.map((option) => (
-        <Button
-          key={option.value}
-          size="sm"
-          onClick={() => {
-            handleClick(option.value || '')
-          }}
-          disabled={
-            filterFiled === 'filter' ? currentFilter === option.value : false
-          }
-          className={`${
-            currentFilter === option.value &&
-            'border border-slate-950 bg-secondary text-secondary-foreground hover:bg-secondary/80'
-          }  h-7 gap-1 rounded-lg text-xs font-normal leading-5  tracking-wide disabled:border   disabled:border-slate-950 disabled:bg-secondary disabled:font-semibold disabled:text-secondary-foreground disabled:hover:bg-secondary/80 sm:h-9 sm:px-2 sm:py-1  sm:text-[14px] `}
-        >
-          {option.label}
-          <span
+        <Link to="c" smooth={true} duration={SCROLL_DURATION}>
+          <Button
+            key={option.value}
+            size="sm"
+            onClick={() => {
+              handleClick(option.value || '')
+            }}
+            disabled={
+              filterFiled === 'filter' ? currentFilter === option.value : false
+            }
             className={`${
-              currentFilter !== option.value && 'rotate-45'
-            } transition-transform duration-300`}
+              currentFilter === option.value &&
+              'border border-slate-950 bg-secondary text-secondary-foreground hover:bg-secondary/80'
+            }  h-7 gap-1 rounded-lg text-xs font-normal leading-5  tracking-wide disabled:border   disabled:border-slate-950 disabled:bg-secondary disabled:font-semibold disabled:text-secondary-foreground disabled:hover:bg-secondary/80 sm:h-9 sm:px-2 sm:py-1  sm:text-[14px] `}
           >
-            <RxCross1 size={11} />
-          </span>
-        </Button>
+            {option.label}
+            <span
+              className={`${
+                currentFilter !== option.value && 'rotate-45'
+              } transition-transform duration-300`}
+            >
+              <RxCross1 size={11} />
+            </span>
+          </Button>
+        </Link>
       ))}
     </div>
   )
