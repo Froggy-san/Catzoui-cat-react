@@ -152,7 +152,7 @@ const SearchBar = forwardRef(function SearchBar(
                       <Link
                         key={result.id}
                         to={`/?product=${result.id}`}
-                        className="flex h-32 items-center space-x-7 rounded-lg px-2 py-3 hover:bg-oldCatBg/60"
+                        className="flex h-[70dvh] items-center space-x-7 rounded-lg px-2 py-3 hover:bg-oldCatBg/60"
                       >
                         <div className="h-full w-[120px] overflow-hidden rounded-lg ">
                           <img
