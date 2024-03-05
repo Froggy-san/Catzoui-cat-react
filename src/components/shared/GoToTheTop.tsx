@@ -9,7 +9,7 @@ const GoToTheTop = ({ hidden }: { hidden: boolean }) => {
     <Button
       size="icon"
       onClick={scrollToTheTop}
-      className={`fixed bottom-16 right-5 opacity-100 transition-all duration-300 ${
+      className={`fixed bottom-5 right-5 opacity-100 transition-all duration-300 ${
         hidden && 'invisible opacity-0'
       }`}
     >
