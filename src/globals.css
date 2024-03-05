@@ -76,7 +76,7 @@
 
   /* Target the scrollbar track */
   *::-webkit-scrollbar {
-    @apply w-1;
+    @apply w-2;
     background-color: transparent;
   }
 
@@ -87,7 +87,7 @@
 
   /* Target on hover (optional) */
   *::-webkit-scrollbar-thumb:hover {
-    @apply bg-blue-600;
+    @apply bg-secondary-foreground/80;
   }
 }
 

@@ -48,7 +48,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="../public/img/cat-electronics.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-electronics.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -71,7 +71,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/img/cat-clothing.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-clothing.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -94,7 +94,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="/public/img/cat-books.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-books.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -117,7 +117,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="/public/img/cat-utensils.webp"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-utensils.webp"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -140,7 +140,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-furniture.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-furniture.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -163,7 +163,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-groceries.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-groceries.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />
@@ -186,7 +186,7 @@ const CarouselCat = () => {
                 <Card className="w-full h-[550px] sm:h-[680px] ">
                   <CardContent className=" relative h-full w-full aspect-square items-center justify-center p-0">
                     <img
-                      src="./public/assets/img/cat-medicine.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-medicine.jpg"
                       alt="category-img"
                       className="w-full h-full object-cover rounded-lg"
                     />

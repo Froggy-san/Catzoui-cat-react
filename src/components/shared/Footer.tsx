@@ -11,7 +11,7 @@ const Footer = () => {
         className=" absolute left-1/2 translate-x-[-50%] top-[-150px] xs:top-[-220px] w-[250px] xs:w-[350px]"
       >
         {" "}
-        <img src="./public/assets/img/logo-2.png" />
+        <img src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png" />
       </Link>
 
       <div className="flex flex-col space-y-10 pl-10 xs:pl-0 xs:flex-row  xs:space-y-0 xs:space-x-10 text-slate-200 mt-36 justify-center flex-wrap">

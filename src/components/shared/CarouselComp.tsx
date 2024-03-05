@@ -40,7 +40,7 @@ const CarouselComp = React.forwardRef(function (
                 <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
                   <div className="w-full h-full">
                     <img
-                      src="./public/assets/img/cat-55.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-55.jpg"
                       className="w-full h-full  rounded-lg object-cover"
                       alt="img"
                     />
@@ -62,7 +62,7 @@ const CarouselComp = React.forwardRef(function (
                 <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
                   <div className="w-full h-full">
                     <img
-                      src="./public/assets/img/carousel-2.jpg"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/carousel-2.jpg"
                       className="w-full h-full  rounded-lg object-cover"
                       alt="img"
                     />
@@ -84,7 +84,7 @@ const CarouselComp = React.forwardRef(function (
                 <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
                   <div className="w-full h-full">
                     <img
-                      src="./public/assets/img/carousel-3.png"
+                      src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/carousel-3.png"
                       className="w-full h-full  rounded-lg object-cover"
                       alt="img"
                     />

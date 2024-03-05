@@ -5,7 +5,7 @@ const Slogan = () => {
     <div className=" absolute bottom-[100px] left-1/2 translate-x-[-50%]    min-w-[95%] sm:min-w-[320px] sm:left-16  sm:translate-x-0 max-w-[450px] break-words">
       <div className=" relative px-3 py-2 rounded-lg bg-gray-50/50 backdrop-blur-xl">
         <img
-          src=".././public/assets/img/logo-2.png"
+          src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png"
           className="w-[100px] absolute sm:left-[-50px] top-[-76px]"
         />
         <h1 className=" tracking-wide text-md sm:text-xl">

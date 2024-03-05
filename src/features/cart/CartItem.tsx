@@ -123,7 +123,7 @@ const CartItem = ({
           />
         </div>
 
-        <div className=" overflow-y-auto h-[250px]    md:flex-1 md:px-12  md:h-[350px] ">
+        <div className=" overflow-y-auto max-h-[250px]    md:flex-1 md:px-12  md:max-h-[350px] ">
           <h3>{item.name}</h3>
           {item.description.length > 0 ? (
             <p className="mt-4">

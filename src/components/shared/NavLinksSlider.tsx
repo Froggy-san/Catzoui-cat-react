@@ -10,7 +10,7 @@ import NavItem from "./NavItem";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "../ui/button";
 
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { forwardRef, useMemo } from "react";
 import { useUser } from "@/features/authentication/useUser";
@@ -32,14 +32,16 @@ const Slider = forwardRef(function NavLinkSlider(
   const { allCategories } = useCategories();
 
   const { isLogingOut, logoutUser } = useLogout();
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const allCat = useMemo(() => {
     return [...new Set(allCategories?.map((pro) => pro.category))];
   }, [allCategories]);
 
   function handleFilterByCategory(value: string) {
-    searchParams.set("filter", value);
-    setSearchParams(searchParams);
+    // searchParams.set("filter", value);
+    // setSearchParams(searchParams);
+    navigate(`/?filter=${value}`);
   }
   // console.log(user?.user_metadata, "user here !!");
   return (

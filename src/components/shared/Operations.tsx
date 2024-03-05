@@ -3,7 +3,7 @@ import { CiDiscount1 } from "react-icons/ci";
 
 const Operations = () => {
   return (
-    <div className="flex flex-col xl:flex-row gap-y-20 md:gap-y-12 px-7 py-5 rounded-3xl">
+    <div className="flex flex-col xl:flex-row gap-y-20 md:gap-y-12  rounded-3xl">
       <div className="flex  items-center flex-wrap  gap-x-1 gap-y-3 flex-1">
         <FitlerOperations
           className=" flex gap-1 flex-wrap"
