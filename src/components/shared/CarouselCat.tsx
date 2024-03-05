@@ -53,7 +53,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg  ">
                       Electronics
                     </span>
                   </CardContent>
@@ -76,7 +76,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Fashion
                     </span>
                   </CardContent>
@@ -99,7 +99,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Books
                     </span>
                   </CardContent>
@@ -122,7 +122,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Utensils
                     </span>
                   </CardContent>
@@ -145,7 +145,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Furniture
                     </span>
                   </CardContent>
@@ -168,7 +168,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Groceries
                     </span>
                   </CardContent>
@@ -191,7 +191,7 @@ const CarouselCat = () => {
                       className="w-full h-full object-cover rounded-lg"
                     />
 
-                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold text-teal-600 backdrop-blur-xl rounded-br-lg rounded-bl-lg">
+                    <span className=" flex items-center justify-center text-2xl bg-gray-50/50 w-full  absolute bottom-0 left-0 font-semibold  backdrop-blur-xl rounded-br-lg rounded-bl-lg">
                       Medicine
                     </span>
                   </CardContent>

@@ -8,7 +8,7 @@ const Slogan = () => {
           src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png"
           className="w-[100px] absolute sm:left-[-50px] top-[-76px]"
         />
-        <h1 className=" tracking-wide text-md sm:text-xl">
+        <h1 className=" tracking-wide text-xs sm:text-xl">
           Welcome to <span className=" text-teal-500">Catzoui-Cat</span>
           's Online store,where a higher form of shopping exists.
           <br />

@@ -32,7 +32,7 @@ const AuthLayout = () => {
       <div className="flex justify-center items-center gap-5 relative">
         <h1 className="text-2xl tracking-wider relative">
           <img
-            src="../../.././public/assets/img/logo-2.png"
+            src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png"
             alt="cat-logo"
             className=" w-28 absolute left-[-87px] top-[-50px]  z-10 "
           />
