@@ -1,0 +1,18 @@
+import React from "react";
+
+interface FormRowProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const FormRow = ({ className, children }: FormRowProps) => {
+  return (
+    <div
+      className={`md:form-row justify-center gap-4 items-center ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
+export default FormRow;
