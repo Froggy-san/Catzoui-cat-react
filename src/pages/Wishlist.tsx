@@ -3,7 +3,7 @@ import WishHeader from "@/features/wishList/WishHeader";
 
 const WishList = () => {
   return (
-    <div className="container">
+    <div className="container px-[1rem]">
       <WishHeader />
       <ListedWishs />
     </div>

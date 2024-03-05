@@ -12,7 +12,6 @@ import BarBorder from "./BarBorder";
 import { useUser } from "@/features/authentication/useUser";
 import { CiLogout } from "react-icons/ci";
 import useLogout from "@/features/authentication/useLogout";
-import { FaCheckCircle } from "react-icons/fa";
 import { CiHeart, CiShoppingBasket } from "react-icons/ci";
 import { RxPerson } from "react-icons/rx";
 import { PiDotsThreeVertical } from "react-icons/pi";

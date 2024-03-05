@@ -6,7 +6,7 @@ const Logo = () => {
       <div className="relative   text-center tracking-[.2rem]  sm:tracking-[.25rem] text-xl sm:text-2xl font-light">
         Catzoui
         <img
-          src="../../public/assets/img/logo-2.png"
+          src="./public/assets/img/logo-2.png"
           alt="image"
           className="w-8 h-8 absolute left-[-1.5rem] top-1 sm:top-2"
         />
