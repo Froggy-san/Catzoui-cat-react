@@ -32,6 +32,7 @@ const Home = () => {
   // }, []);
   return (
     <div>
+      <h1>REATADSDADASD</h1>
       <CarouselComp ref={ref} />
       <CarouselCat />
       <div className="mt-40 mb-12 container space-y-12 ">
