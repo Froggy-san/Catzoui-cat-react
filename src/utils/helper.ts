@@ -25,106 +25,106 @@
 // };
 
 export const formatCurrency = (value: number) =>
-  new Intl.NumberFormat("en", { style: "currency", currency: "egp" }).format(
+  new Intl.NumberFormat('en', { style: 'currency', currency: 'egp' }).format(
     value
-  );
+  )
 
 export const formatText = (value: string) => {
-  return value.trim().toLocaleLowerCase();
-};
+  return value.trim().toLocaleLowerCase()
+}
 
 export function randomYear(min: number, max: number): number {
   // Generate a random number between 0 and 1
-  const random = Math.random();
+  const random = Math.random()
   // Multiply it by the difference between the maximum and minimum year, and add the minimum year
-  let year = random * (max - min) + min;
+  let year = random * (max - min) + min
   // Round down the result to an integer
-  year = Math.floor(year);
+  year = Math.floor(year)
   // Return the random year
-  return year;
+  return year
 }
 
 const clothKeywords = [
-  "shirt",
-  "pants",
-  "dress",
-  "skirt",
-  "jacket",
-  "cloth",
-  "clothing",
-  "coat",
-  "sweater",
-  "hat",
-  "scarf",
-  "gloves",
-  "socks",
-  "shoes",
-  "boots",
-  "belt",
-  "tie",
-  "jeans",
-  "t-shirt",
-  "hoodie",
-  "blouse",
-  "shorts",
-];
+  'shirt',
+  'pants',
+  'dress',
+  'skirt',
+  'jacket',
+  'cloth',
+  'clothing',
+  'coat',
+  'sweater',
+  'hat',
+  'scarf',
+  'gloves',
+  'socks',
+  'shoes',
+  'boots',
+  'belt',
+  'tie',
+  'jeans',
+  't-shirt',
+  'hoodie',
+  'blouse',
+  'shorts',
+]
 
 // Define a function that takes a string as a parameter and returns a boolean
 export function hasClothKeywords(str: string): boolean {
   // Use the some method to check if any of the keywords are included in the string
-  return clothKeywords.some((keyword) => str.includes(keyword));
+  return clothKeywords.some((keyword) => str.includes(keyword))
 }
 
 const electronicKeywords = [
-  "laptop",
-  "phone",
-  "tablet",
-  "camera",
-  "TV",
-  "monitor",
-  "keyboard",
-  "mouse",
-  "printer",
-  "speaker",
-  "headphone",
-  "charger",
-  "battery",
-  "USB",
-  "HDMI",
-  "Bluetooth",
-  "WiFi",
-  "LED",
-  "LCD",
-  "RAM",
-  "CPU",
-  "GPU",
-];
+  'laptop',
+  'phone',
+  'tablet',
+  'camera',
+  'TV',
+  'monitor',
+  'keyboard',
+  'mouse',
+  'printer',
+  'speaker',
+  'headphone',
+  'charger',
+  'battery',
+  'USB',
+  'HDMI',
+  'Bluetooth',
+  'WiFi',
+  'LED',
+  'LCD',
+  'RAM',
+  'CPU',
+  'GPU',
+]
 
 // Define a function that takes a product object as a parameter and returns a boolean
 export function isItElectronic(str: string): boolean {
   // Use the some method to check if any of the keywords are included in the string
-  return electronicKeywords.some((keyword) => str.includes(keyword));
+  return electronicKeywords.some((keyword) => str.includes(keyword))
 }
 
 export function validateEgyptianPhoneNumber(phoneNumber: string) {
   // define the regex
-  const regex = /^01[0125][0-9]{8}$/;
+  const regex = /^01[0125][0-9]{8}$/
   // test the string against the regex
   if (regex.test(phoneNumber)) {
     // return true if it matches
-    return true;
+    return true
   } else {
     // return false if it doesn't
-    return false;
+    return false
   }
 }
 
 export function scrollToTheTop() {
-  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
 }
 
 export function validateEmail(email: string) {
   const re =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return re.test(String(email).toLowerCase())
 }

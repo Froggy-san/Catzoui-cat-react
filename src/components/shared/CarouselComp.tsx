@@ -1,17 +1,17 @@
-import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
-import { Card, CardContent } from "@/components/ui/card";
+import * as React from 'react'
+import Autoplay from 'embla-carousel-autoplay'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Button } from "../ui/button";
-import { Link } from "react-scroll";
-import { SCROLL_DURATION } from "@/utils/constants";
-import Slogan from "./Slogan";
+} from '@/components/ui/carousel'
+import { Button } from '../ui/button'
+import { Link } from 'react-scroll'
+import { SCROLL_DURATION } from '@/utils/constants'
+import Slogan from './Slogan'
 
 const CarouselComp = React.forwardRef(function (
   _,
@@ -19,13 +19,13 @@ const CarouselComp = React.forwardRef(function (
 ) {
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false })
-  );
+  )
 
   return (
     <div ref={ref} className="container mt-5 px-0  transition-all duration-300">
       <Carousel
         opts={{
-          align: "start",
+          align: 'start',
           // loop: true,
         }}
         plugins={[plugin.current]}
@@ -35,18 +35,18 @@ const CarouselComp = React.forwardRef(function (
       >
         <CarouselContent>
           <CarouselItem>
-            <div className="p-1 h-[65dvh] md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[75dvh]">
               <Card className=" h-full ">
-                <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
-                  <div className="w-full h-full">
+                <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
+                  <div className="h-full w-full">
                     <img
                       src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/cat-55.jpg"
-                      className="w-full h-full  rounded-lg object-cover"
+                      className="h-full w-full  rounded-lg object-cover"
                       alt="img"
                     />
                     <Slogan />
                     <Link to="c" smooth={true} duration={SCROLL_DURATION}>
-                      <Button className="absolute left-5 sm:left-16 bottom-5 hover:bg-slate-800">
+                      <Button className="absolute bottom-5 left-5 hover:bg-slate-800 sm:left-16">
                         Shop Now
                       </Button>
                     </Link>
@@ -57,18 +57,18 @@ const CarouselComp = React.forwardRef(function (
           </CarouselItem>
 
           <CarouselItem className="">
-            <div className="p-1 h-[65dvh] md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[75dvh]">
               <Card className=" h-full ">
-                <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
-                  <div className="w-full h-full">
+                <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
+                  <div className="h-full w-full">
                     <img
                       src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/carousel-2.jpg"
-                      className="w-full h-full  rounded-lg object-cover"
+                      className="h-full w-full  rounded-lg object-cover"
                       alt="img"
                     />
                     <Slogan />
                     <Link to="c" smooth={true} duration={SCROLL_DURATION}>
-                      <Button className="absolute left-5 sm:left-16 bottom-5 hover:bg-slate-800">
+                      <Button className="absolute bottom-5 left-5 hover:bg-slate-800 sm:left-16">
                         Shop Now
                       </Button>
                     </Link>
@@ -79,18 +79,18 @@ const CarouselComp = React.forwardRef(function (
           </CarouselItem>
 
           <CarouselItem className="">
-            <div className="p-1 h-[65dvh] md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[75dvh]">
               <Card className=" h-full ">
-                <CardContent className="flex relative p-0 w-full h-full aspect-square items-center justify-center  ">
-                  <div className="w-full h-full">
+                <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
+                  <div className="h-full w-full">
                     <img
                       src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/carousel-3.png"
-                      className="w-full h-full  rounded-lg object-cover"
+                      className="h-full w-full  rounded-lg object-cover"
                       alt="img"
                     />
                     <Slogan />
                     <Link to="c" smooth={true} duration={SCROLL_DURATION}>
-                      <Button className="absolute left-5 sm:left-16 bottom-5 hover:bg-slate-800">
+                      <Button className="absolute bottom-5 left-5 hover:bg-slate-800 sm:left-16">
                         Shop Now
                       </Button>
                     </Link>
@@ -104,7 +104,7 @@ const CarouselComp = React.forwardRef(function (
         <CarouselNext />
       </Carousel>
     </div>
-  );
-});
+  )
+})
 
-export default CarouselComp;
+export default CarouselComp

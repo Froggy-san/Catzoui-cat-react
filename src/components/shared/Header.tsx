@@ -1,28 +1,28 @@
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import { Avatar } from "../ui/avatar";
-import { Link } from "react-router-dom";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import NavMenuItem from "./NavMenuItem";
-import UilityButton from "./UilityButton";
-import Searching, { useSearchBarContext } from "./Searching";
-import NavLinks from "./NavLinks";
-import Logo from "./Logo";
-import Bar from "./Bar";
-import BarBorder from "./BarBorder";
-import { useUser } from "@/features/authentication/useUser";
-import { CiLogout } from "react-icons/ci";
-import useLogout from "@/features/authentication/useLogout";
-import { CiHeart, CiShoppingBasket } from "react-icons/ci";
-import { RxPerson } from "react-icons/rx";
-import { PiDotsThreeVertical } from "react-icons/pi";
+import ClickAwayListener from '@mui/material/ClickAwayListener'
+import { Avatar } from '../ui/avatar'
+import { Link } from 'react-router-dom'
+import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import NavMenuItem from './NavMenuItem'
+import UilityButton from './UilityButton'
+import Searching, { useSearchBarContext } from './Searching'
+import NavLinks from './NavLinks'
+import Logo from './Logo'
+import Bar from './Bar'
+import BarBorder from './BarBorder'
+import { useUser } from '@/features/authentication/useUser'
+import { CiLogout } from 'react-icons/ci'
+import useLogout from '@/features/authentication/useLogout'
+import { CiHeart, CiShoppingBasket } from 'react-icons/ci'
+import { RxPerson } from 'react-icons/rx'
+import { PiDotsThreeVertical } from 'react-icons/pi'
 
 const Header = () => {
-  const { close } = useSearchBarContext();
+  const { close } = useSearchBarContext()
   // const { close: menuClose } = useMenuItemContext();
-  const { user } = useUser();
-  const { logoutUser } = useLogout();
+  const { user } = useUser()
+  const { logoutUser } = useLogout()
   return (
-    <nav className="relative flex items-center justify-between h-11 px-2 container">
+    <nav className="container relative flex h-11 items-center justify-between px-2">
       <Bar>
         <Bar.BarButton />
         <Bar.NavSlider />
@@ -33,8 +33,8 @@ const Header = () => {
       <Logo />
 
       <ul
-        className="flex h-full items-center
-        text-[1.4rem] xs:space-x-1 sm:space-x-2 z-50"
+        className="z-50 flex h-full
+        items-center text-[1.4rem] xs:space-x-1 sm:space-x-2"
       >
         <Searching.Toggle />
 
@@ -43,20 +43,20 @@ const Header = () => {
             <UilityButton visible="screen" render={() => <RxPerson />} />
           </NavMenuItem.UtilButtonComp>
 
-          <NavMenuItem.MenuComp className="hidden absolute  right-20 top-[45px] w-[200px] bg-[#ffffff] p-2  rounded-md  md:flex flex-col gap-1 text-sm border">
-            {" "}
+          <NavMenuItem.MenuComp className="absolute right-20  top-[45px] hidden w-[200px] flex-col gap-1  rounded-md  border bg-[#ffffff] p-2 text-sm md:flex">
+            {' '}
             <Link
               to="/account"
-              className="flex justify-around py-1 px2 rounded-md gap-2 hover:bg-slate-100/70 relative"
+              className="relative  flex justify-around gap-2 rounded-md px-2 py-1 hover:bg-slate-100/70"
             >
               {/* <FaCheckCircle
                 className="absolute right-[-5px] top-[2px] text-green-600 opacity-80"
                 size={15}
               /> */}
-              <Avatar className="w-10 h-10 rounded-full">
+              <Avatar className="h-10 w-10 rounded-full">
                 <AvatarImage
                   src={user?.user_metadata.avater}
-                  className="rounded-full w-full h-full"
+                  className="h-full w-full rounded-full"
                 />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
@@ -69,13 +69,13 @@ const Header = () => {
               </div>
             </Link>
             <div
-              className="flex items-center gap-3 py-1  px-2 hover:bg-slate-100/70 rounded-md cursor-pointer"
+              className="flex cursor-pointer   items-center  gap-3 rounded-md px-2 py-1 hover:bg-slate-100/70"
               onClick={() => logoutUser()}
             >
-              <CiLogout size={30} />{" "}
+              <CiLogout size={30} />{' '}
               <span className=" text-md truncate pb-1">
                 Log out <strong>{user?.email}</strong>
-              </span>{" "}
+              </span>{' '}
             </div>
           </NavMenuItem.MenuComp>
         </NavMenuItem>
@@ -102,12 +102,12 @@ const Header = () => {
             />
           </NavMenuItem.UtilButtonComp>
 
-          <NavMenuItem.MenuComp className="absolute right-5 top-10 bg-slate-200 p-1  rounded-md md:hidden flex flex-col text-sm">
-            {" "}
-            <div className="flex items-center gap-1 py-1  px-2 hover:bg-slate-100 rounded-md cursor-pointer">
+          <NavMenuItem.MenuComp className="absolute right-5 top-10 flex flex-col  rounded-md bg-slate-200 p-1 text-sm md:hidden">
+            {' '}
+            <div className="flex cursor-pointer items-center gap-1  rounded-md px-2 py-1 hover:bg-slate-100">
               <RxPerson size={17} /> <Link to="/account">Account</Link>
             </div>
-            <div className="flex items-center py-1  px-2 gap-1 hover:bg-slate-100 rounded-md cursor-pointer">
+            <div className="flex cursor-pointer items-center  gap-1 rounded-md px-2 py-1 hover:bg-slate-100">
               <CiHeart size={17} /> <Link to="/wishlist">Wish list</Link>
             </div>
           </NavMenuItem.MenuComp>
@@ -120,7 +120,7 @@ const Header = () => {
 
       <BarBorder />
     </nav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

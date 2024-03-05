@@ -1,25 +1,25 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom'
 
 const Title = ({
   title,
   className,
 }: {
-  title?: string;
-  className?: string;
+  title?: string
+  className?: string
 }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams()
 
-  const value = searchParams.get("filter") || "Variety";
+  const value = searchParams.get('filter') || 'Variety'
 
   return (
     <div className={className}>
-      {value === "clothing"
-        ? "Fashion"
-        : value === "all"
-        ? "Variety"
-        : value || title}
+      {value === 'clothing'
+        ? 'Fashion'
+        : value === 'all'
+          ? 'Variety'
+          : value || title}
     </div>
-  );
-};
+  )
+}
 
-export default Title;
+export default Title

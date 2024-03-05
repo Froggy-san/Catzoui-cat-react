@@ -1,87 +1,87 @@
-import { useCallback, useEffect, useState } from "react";
-import { FileWithPath, useDropzone } from "react-dropzone";
-import { ImFilePicture } from "react-icons/im";
+import { useCallback, useEffect, useState } from 'react'
+import { FileWithPath, useDropzone } from 'react-dropzone'
+import { ImFilePicture } from 'react-icons/im'
 
-import { BsUpload } from "react-icons/bs";
-import { Button } from "../ui/button";
+import { BsUpload } from 'react-icons/bs'
+import { Button } from '../ui/button'
 
 type FileUploaderProps = {
-  fieldChange: (FILES: File[] | (string | null)[]) => void;
-  mediaUrl?: (string | null)[] | undefined;
-};
+  fieldChange: (FILES: File[] | (string | null)[]) => void
+  mediaUrl?: (string | null)[] | undefined
+}
 
 const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
-  const [file, setFile] = useState<File[] | (string | null)[]>([]);
+  const [file, setFile] = useState<File[] | (string | null)[]>([])
 
   const [fileUrls, setFileUrls] = useState<(string | null)[] | []>(
     mediaUrl || []
-  );
+  )
 
   useEffect(() => {
     if (mediaUrl) {
-      setFile(mediaUrl);
-      fieldChange(mediaUrl);
+      setFile(mediaUrl)
+      fieldChange(mediaUrl)
     }
-  }, []);
+  }, [])
 
   // const urls: string[] = [];
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
       // Do something with the files
 
-      setFile(acceptedFiles);
-      fieldChange(acceptedFiles);
-      const urls = acceptedFiles.map((file: File) => URL.createObjectURL(file));
+      setFile(acceptedFiles)
+      fieldChange(acceptedFiles)
+      const urls = acceptedFiles.map((file: File) => URL.createObjectURL(file))
 
-      setFileUrls(urls);
+      setFileUrls(urls)
     },
     [file]
-  );
+  )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      "image/*": [".png", ".jpeg", ".jpg", ".svg"],
+      'image/*': ['.png', '.jpeg', '.jpg', '.svg'],
     },
-  });
+  })
   return (
     <div
       {...getRootProps()}
-      className="flex justify-center items-center flex-wrap    flex-col rounded-xl cursor-pointer h-80 lg:h-[500px] bg-slate-100 "
+      className="flex h-80 cursor-pointer flex-col    flex-wrap items-center justify-center rounded-xl bg-slate-100 lg:h-[500px] "
     >
       <input {...getInputProps()} className="cursor-pointer" />
 
       {fileUrls.length ? (
-        <div className="flex flex-col w-full h-full">
-          <div className="flex justify-center  gap-5 h-full w-full   p-4 flex-wrap overflow-y-auto">
+        <div className="flex h-full w-full flex-col">
+          <div className="flex h-full  w-full flex-wrap justify-center   gap-5 overflow-y-auto p-4">
             {fileUrls.map((image, i) => (
-              <div key={i} className={`w-[250px ]    rounded-lg h-full`}>
+              <div key={i} className={`w-[250px ]    h-full rounded-lg`}>
                 <img
-                  src={image || ""}
+                  src={image || ''}
                   alt="image"
                   key={i}
-                  className="rounded-lg h-full"
+                  className="h-full rounded-lg"
                 />
               </div>
             ))}
           </div>
-          <hr className="w-[96%] mx-auto h-[.5px] bg-slate-500 " />
-          <p className="h-12 flex gap-2 justify-center items-center text-slate-500">
+          <hr className="mx-auto h-[.5px] w-[96%] bg-slate-500 " />
+          <p className="flex h-12 items-center justify-center gap-2 text-slate-500">
             <ImFilePicture size={15} />
             Click or drag photo to replace
           </p>
         </div>
       ) : (
-        <div className=" flex flex-col items-center justify-center w-full text-slate-500 rounded-[24px] object-cover object-top">
+        <div className=" flex w-full flex-col items-center justify-center rounded-[24px] object-cover object-top text-slate-500">
           <BsUpload size={50} />
-          <h3 className="font-semibold mt-4">Drag photo here</h3>
+          <h3 className="mt-4 font-semibold">Drag photo here</h3>
           <p>SVG, PNG, JPG</p>
 
           <Button className="mt-5">Select from computer</Button>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FileUploader;
+export default FileUploader

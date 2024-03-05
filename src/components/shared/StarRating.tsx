@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState } from 'react'
 // import PropTypes from "prop-types"; // to use types in react
 const containerStyle = {
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-};
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+}
 
 const starContanierStyle = {
-  display: "flex",
-};
+  display: 'flex',
+}
 
 // specicifing types for props
 // StarRating.propTypes = {
@@ -23,40 +23,40 @@ const starContanierStyle = {
 // };
 
 interface StarRating {
-  maxRating?: number;
-  defaultRating?: number;
-  color?: string;
-  size?: number;
-  messages?: [];
-  className?: string;
-  onSetRating?: (rating: number) => void;
-  readOnly?: boolean;
+  maxRating?: number
+  defaultRating?: number
+  color?: string
+  size?: number
+  messages?: []
+  className?: string
+  onSetRating?: (rating: number) => void
+  readOnly?: boolean
 }
 
 export default function StarRating({
   maxRating = 5,
-  color = "#fcc419",
+  color = '#fcc419',
   size = 48,
-  className = "",
+  className = '',
   messages = [],
   defaultRating = 0,
   readOnly = false,
   onSetRating,
 }: StarRating) {
-  const [rating, setRating] = useState(defaultRating);
-  const [tempRating, setTempRating] = useState(0);
+  const [rating, setRating] = useState(defaultRating)
+  const [tempRating, setTempRating] = useState(0)
 
   function handleRating(rating: number) {
-    setRating(rating);
-    if (onSetRating) onSetRating(rating);
+    setRating(rating)
+    if (onSetRating) onSetRating(rating)
   }
 
   const textStyle = {
-    lineHeight: "1",
-    margin: "0",
+    lineHeight: '1',
+    margin: '0',
     color,
     fontSize: `${size / 2}px`,
-  };
+  }
 
   return (
     <div className={className} style={containerStyle}>
@@ -67,14 +67,14 @@ export default function StarRating({
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             // hovered={tempRating >= i + 1}
             onRate={() => {
-              if (readOnly) return;
-              handleRating(i + 1);
+              if (readOnly) return
+              handleRating(i + 1)
             }}
             onHover={() => {
-              if (!readOnly) setTempRating(i + 1);
+              if (!readOnly) setTempRating(i + 1)
             }}
             onHoverOut={() => {
-              if (!readOnly) setTempRating(0);
+              if (!readOnly) setTempRating(0)
             }}
             color={color}
             size={size}
@@ -84,27 +84,27 @@ export default function StarRating({
       <p style={textStyle}>
         {messages.length === maxRating
           ? messages[tempRating ? tempRating - 1 : rating - 1]
-          : tempRating || rating || ""}
+          : tempRating || rating || ''}
       </p>
     </div>
-  );
+  )
 }
 interface star {
-  onRate: () => void;
-  full: boolean;
-  onHover: () => void;
-  onHoverOut: () => void;
-  color: string;
-  size: number;
+  onRate: () => void
+  full: boolean
+  onHover: () => void
+  onHoverOut: () => void
+  color: string
+  size: number
 }
 
 function Star({ onRate, full, onHover, onHoverOut, color, size }: star) {
   const starStype = {
     width: `${size}px`,
     height: `${size}px`,
-    display: "block",
-    cursor: "pointer",
-  };
+    display: 'block',
+    cursor: 'pointer',
+  }
 
   return (
     <span
@@ -139,7 +139,7 @@ function Star({ onRate, full, onHover, onHoverOut, color, size }: star) {
         </svg>
       )}
     </span>
-  );
+  )
 }
 
 /*

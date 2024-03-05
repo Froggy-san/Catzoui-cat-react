@@ -1,10 +1,10 @@
-import { toast } from "sonner";
+import { toast } from 'sonner'
 
 interface ToastProps {
-  title?: string;
-  icon?: () => JSX.Element;
-  descText?: string;
-  undoFn?: () => void;
+  title?: string
+  icon?: () => JSX.Element
+  descText?: string
+  undoFn?: () => void
 }
 
 const ToastComp = ({ title, icon, descText, undoFn }: ToastProps) => {
@@ -16,11 +16,11 @@ const ToastComp = ({ title, icon, descText, undoFn }: ToastProps) => {
       </div>
     ),
     action: {
-      label: "Undo",
+      label: 'Undo',
       onClick: () => undoFn,
     },
     closeButton: true,
-  });
-};
+  })
+}
 
-export default ToastComp;
+export default ToastComp

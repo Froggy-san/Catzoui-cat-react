@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -12,33 +12,33 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useNavigate } from "react-router-dom";
-import useLogin from "./useLogin";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { useNavigate } from 'react-router-dom'
+import useLogin from './useLogin'
 
 const formSchema = z.object({
   email: z.string().min(6).max(50),
   password: z.string().min(8).max(22),
-});
+})
 
 const LoginForm = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const { isLogingIn, loginUser } = useLogin();
+  const { isLogingIn, loginUser } = useLogin()
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
-  });
+  })
 
   // 2. Define a submit handler.
   function onSubmit({ email, password }: z.infer<typeof formSchema>) {
-    loginUser({ email, password });
+    loginUser({ email, password })
   }
 
   return (
@@ -82,14 +82,14 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <div className="flex items-center space-x-3 justify-end">
+        <div className="flex items-center justify-end space-x-3">
           <Button
             type="button"
             disabled={isLogingIn}
             variant="secondary"
             onClick={(e) => {
-              e.preventDefault();
-              navigate("/sign-up");
+              e.preventDefault()
+              navigate('/sign-up')
             }}
           >
             Sign up
@@ -100,7 +100,7 @@ const LoginForm = () => {
         </div>
       </form>
     </Form>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

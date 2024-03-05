@@ -4,24 +4,24 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { LuLoader2 } from "react-icons/lu";
+} from '@/components/ui/dialog'
+import { LuLoader2 } from 'react-icons/lu'
 
 const VerifyAccount = ({
   isOpen,
   setIsOpen,
   email,
 }: {
-  isOpen: boolean;
-  setIsOpen?: (value: boolean) => void;
-  email?: string;
+  isOpen: boolean
+  setIsOpen?: (value: boolean) => void
+  email?: string
 }) => {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       {/* <DialogTrigger>Open</DialogTrigger> */}
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className=" leading-6 text-md">
+          <DialogTitle className=" text-md leading-6">
             Please verify your account, {email}.
           </DialogTitle>
           <DialogDescription className="flex items-center gap-1 ">
@@ -37,7 +37,7 @@ const VerifyAccount = ({
         </DialogHeader>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default VerifyAccount;
+export default VerifyAccount

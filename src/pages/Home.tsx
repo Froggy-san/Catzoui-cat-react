@@ -1,13 +1,13 @@
-import CarouselComp from "@/components/shared/CarouselComp";
-import CarouselCat from "@/components/shared/CarouselCat";
-import Operations from "@/components/shared/Operations";
-import Title from "@/components/shared/Title";
-import ProductsList from "@/features/products/ProductsList";
-import ProductDetails from "@/features/products/ProductDetails";
-import GoToTheTop from "@/components/shared/GoToTheTop";
-import { useInView } from "react-intersection-observer";
+import CarouselComp from '@/components/shared/CarouselComp'
+import CarouselCat from '@/components/shared/CarouselCat'
+import Operations from '@/components/shared/Operations'
+import Title from '@/components/shared/Title'
+import ProductsList from '@/features/products/ProductsList'
+import ProductDetails from '@/features/products/ProductDetails'
+import GoToTheTop from '@/components/shared/GoToTheTop'
+import { useInView } from 'react-intersection-observer'
 const Home = () => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView()
 
   // console.log(inView, "Is it in View ??!?!@!?@");
 
@@ -34,8 +34,8 @@ const Home = () => {
     <div>
       <CarouselComp ref={ref} />
       <CarouselCat />
-      <div className="mt-40 mb-12 container space-y-12 ">
-        <Title className="font-semibold text-5xl md:text-7xl text-secondary-foreground" />
+      <div className="container mb-12 mt-40 space-y-12 ">
+        <Title className="text-5xl font-semibold text-secondary-foreground md:text-7xl" />
 
         <Operations />
       </div>
@@ -55,7 +55,7 @@ const Home = () => {
         </div>
       </Skeleton> */}
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

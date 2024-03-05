@@ -1,44 +1,44 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import ProductLoading from "./ProductLoading";
+import { Skeleton } from '@/components/ui/skeleton'
+import ProductLoading from './ProductLoading'
 
 function ProductDetailsLoading({ className }: { className?: string }) {
   return (
     <Skeleton
-      className={`bg-transparent w-full h-full gap-5 
-        flex flex-col gap-y-24 lg:flex-row ${className}`}
+      className={`flex h-full w-full flex-col 
+        gap-5 gap-y-24 bg-transparent lg:flex-row ${className}`}
     >
-      <ProductLoading className=" w-full xs:px-6 sm:px-20 lg:px-0 lg:w-[550px]" />
+      <ProductLoading className=" w-full xs:px-6 sm:px-20 lg:w-[550px] lg:px-0" />
 
-      <div className="flex flex-col gap-5 flex-1 ">
+      <div className="flex flex-1 flex-col gap-5 ">
         <div className=" h-4 rounded-2xl bg-oldCatBg"></div>
-        <div className="flex items-center h-4 rounded-2xl gap-4 ">
-          <span className=" w-[60px] h-4 rounded-2xl bg-oldCatBg"></span>
-          <span className=" w-[60px] h-4 rounded-2xl bg-oldCatBg"></span>
+        <div className="flex h-4 items-center gap-4 rounded-2xl ">
+          <span className=" h-4 w-[60px] rounded-2xl bg-oldCatBg"></span>
+          <span className=" h-4 w-[60px] rounded-2xl bg-oldCatBg"></span>
         </div>
         <div className="flex flex-wrap gap-5">
-          <div className="w-[80%]  h-4 bg-oldCatBg rounded-xl"></div>
-          <div className="w-[15%]  h-4 bg-oldCatBg rounded-xl"></div>
-          <div className="w-[65%]  h-4 bg-oldCatBg rounded-xl"></div>
-          <div className="w-[20%]  h-4 bg-oldCatBg rounded-xl"></div>
-          <div className="w-[10%]  h-4 bg-oldCatBg rounded-xl"></div>
-          <div className="w-[80%]  h-4 bg-oldCatBg rounded-xl"></div>
+          <div className="h-4  w-[80%] rounded-xl bg-oldCatBg"></div>
+          <div className="h-4  w-[15%] rounded-xl bg-oldCatBg"></div>
+          <div className="h-4  w-[65%] rounded-xl bg-oldCatBg"></div>
+          <div className="h-4  w-[20%] rounded-xl bg-oldCatBg"></div>
+          <div className="h-4  w-[10%] rounded-xl bg-oldCatBg"></div>
+          <div className="h-4  w-[80%] rounded-xl bg-oldCatBg"></div>
         </div>
 
-        <div className="flex flex-col gap-5 mt-7">
-          <div className="flex justify-between items-center">
-            <div className="w-[150px] h-4 rounded-xl bg-oldCatBg"></div>
-            <div className="w-[150px] h-3 rounded-xl bg-oldCatBg"></div>
+        <div className="mt-7 flex flex-col gap-5">
+          <div className="flex items-center justify-between">
+            <div className="h-4 w-[150px] rounded-xl bg-oldCatBg"></div>
+            <div className="h-3 w-[150px] rounded-xl bg-oldCatBg"></div>
           </div>
 
-          <div className="flex flex-col gap-4 mt-7">
-            <div className="w-[50px] h-4 rounded-xl bg-oldCatBg"></div>
+          <div className="mt-7 flex flex-col gap-4">
+            <div className="h-4 w-[50px] rounded-xl bg-oldCatBg"></div>
 
             <div className="flex gap-5">
-              <span className="w-[40px] h-[35px] rounded-md bg-oldCatBg"></span>
-              <span className="w-[40px] h-[35px] rounded-md bg-oldCatBg"></span>
-              <span className="w-[45px] h-[35px] rounded-md bg-oldCatBg"></span>
-              <span className="w-[45px] h-[35px] rounded-md bg-oldCatBg"></span>
-              <span className="w-[45px] h-[35px] rounded-md bg-oldCatBg"></span>
+              <span className="h-[35px] w-[40px] rounded-md bg-oldCatBg"></span>
+              <span className="h-[35px] w-[40px] rounded-md bg-oldCatBg"></span>
+              <span className="h-[35px] w-[45px] rounded-md bg-oldCatBg"></span>
+              <span className="h-[35px] w-[45px] rounded-md bg-oldCatBg"></span>
+              <span className="h-[35px] w-[45px] rounded-md bg-oldCatBg"></span>
             </div>
           </div>
 
@@ -49,7 +49,7 @@ function ProductDetailsLoading({ className }: { className?: string }) {
         </div>
       </div>
     </Skeleton>
-  );
+  )
 }
 
-export default ProductDetailsLoading;
+export default ProductDetailsLoading

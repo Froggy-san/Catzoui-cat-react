@@ -1,5 +1,5 @@
-import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import GoBackButton from "@/components/shared/GoBackButton";
+import { MdOutlineRemoveShoppingCart } from 'react-icons/md'
+import GoBackButton from '@/components/shared/GoBackButton'
 
 const EmptyCart = () => {
   return (
@@ -10,7 +10,7 @@ const EmptyCart = () => {
         <GoBackButton />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmptyCart;
+export default EmptyCart

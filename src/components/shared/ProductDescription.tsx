@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { LENGHT_OF_STRING } from "@/utils/constants";
-import React, { useState } from "react";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
+import { Button } from '@/components/ui/button'
+import { LENGHT_OF_STRING } from '@/utils/constants'
+import React, { useState } from 'react'
+import { IoIosArrowDown } from 'react-icons/io'
+import { IoIosArrowUp } from 'react-icons/io'
 {
   /* ${
           !isOpen && isBigEnough && "text-ellipsis overflow-clip h-[170px]"
@@ -13,26 +13,26 @@ const ProductDescription = ({
   description,
   arrowPositionX,
 }: {
-  description: string | undefined;
-  handleScrollUp?: () => void;
-  arrowPositionX?: string;
+  description: string | undefined
+  handleScrollUp?: () => void
+  arrowPositionX?: string
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const isBigEnough = description && description.length >= LENGHT_OF_STRING;
+  const isBigEnough = description && description.length >= LENGHT_OF_STRING
 
   const desc =
     isBigEnough && !isOpen
-      ? description?.slice(0, LENGHT_OF_STRING) + "..."
-      : description;
-  console.log(description?.slice(0, LENGHT_OF_STRING));
+      ? description?.slice(0, LENGHT_OF_STRING) + '...'
+      : description
+  console.log(description?.slice(0, LENGHT_OF_STRING))
   return (
     <div className=" relative">
-      <p className={`mt-5 text-gray-400 break-words`}>{desc}</p>
+      <p className={`mt-5 break-words text-gray-400`}>{desc}</p>
       {isBigEnough ? (
         <Button
           onClick={() => {
-            setIsOpen((is) => !is);
+            setIsOpen((is) => !is)
             // if (isOpen) handleScrollUp();
           }}
           size="icon"
@@ -43,7 +43,7 @@ const ProductDescription = ({
         </Button>
       ) : null}
     </div>
-  );
-};
+  )
+}
 
-export default ProductDescription;
+export default ProductDescription

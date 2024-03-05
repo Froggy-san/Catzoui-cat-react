@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
 export default function useGoToProductPage(id: string) {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  return id ? navigate(`/?product=${id}`) : "";
+  return id ? navigate(`/?product=${id}`) : ''
 }

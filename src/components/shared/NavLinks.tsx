@@ -1,35 +1,35 @@
-import { useMemo } from "react";
-import useCategories from "@/features/products/useGetAllCategories";
-import { useSearchParams } from "react-router-dom";
-import { Link } from "react-scroll";
-import { SCROLL_DURATION } from "@/utils/constants";
+import { useMemo } from 'react'
+import useCategories from '@/features/products/useGetAllCategories'
+import { useSearchParams } from 'react-router-dom'
+import { Link } from 'react-scroll'
+import { SCROLL_DURATION } from '@/utils/constants'
 
-import { RiArrowDropDownLine } from "react-icons/ri";
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 const NavLinks = () => {
-  const { allCategories } = useCategories();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { allCategories } = useCategories()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const allCat = useMemo(() => {
-    return [...new Set(allCategories?.map((pro) => pro.category))];
-  }, [allCategories]);
+    return [...new Set(allCategories?.map((pro) => pro.category))]
+  }, [allCategories])
 
-  console.log(allCat, "asdalsdaldallas");
+  console.log(allCat, 'asdalsdaldallas')
   function handleFilterByCategory(field: string, value: string) {
-    searchParams.set(field, value);
-    setSearchParams(searchParams);
+    searchParams.set(field, value)
+    setSearchParams(searchParams)
   }
 
   return (
-    <ul className="hidden lg:flex items-center gap-3   h-full md:text-md font-light  z-50">
-      <li className="flex relative cursor-pointer items-center h-full group transition-transform duration-300 hover:translate-y-[-2px]">
-        CATEGORY{" "}
-        <span className="group-hover:rotate-180  transition-transform duration-300">
+    <ul className="md:text-md z-50 hidden h-full   items-center gap-3 font-light  lg:flex">
+      <li className="group relative flex h-full cursor-pointer items-center transition-transform duration-300 hover:translate-y-[-2px]">
+        CATEGORY{' '}
+        <span className="transition-transform  duration-300 group-hover:rotate-180">
           <RiArrowDropDownLine size={19} />
         </span>
         <ul
           style={{}}
-          className="absolute top-[44px] left-5 w-[450px] p-3 rounded-md gap-3 opacity-0 invisible bg-slate-100 flex flex-wrap group-hover:opacity-100 group-hover:visible max-h-[150px] overflow-y-auto overscroll-contain "
+          className="invisible absolute left-5 top-[44px] flex max-h-[150px] w-[450px] flex-wrap gap-3 overflow-y-auto overscroll-contain rounded-md bg-slate-100 p-3 opacity-0 group-hover:visible group-hover:opacity-100 "
         >
           {allCat.length ? (
             <>
@@ -41,7 +41,7 @@ const NavLinks = () => {
                   spy={true}
                   // offset={100}
                   key={category}
-                  onClick={() => handleFilterByCategory("filter", category)}
+                  onClick={() => handleFilterByCategory('filter', category)}
                   className="hover:underline"
                 >
                   {category}
@@ -52,12 +52,12 @@ const NavLinks = () => {
         </ul>
       </li>
 
-      <li className="flex relative cursor-pointer items-center h-full group transition-transform duration-300 hover:translate-y-[-2px]">
-        BRANDS{" "}
-        <span className="group-hover:rotate-180  transition-transform duration-300">
+      <li className="group relative flex h-full cursor-pointer items-center transition-transform duration-300 hover:translate-y-[-2px]">
+        BRANDS{' '}
+        <span className="transition-transform  duration-300 group-hover:rotate-180">
           <RiArrowDropDownLine size={19} />
         </span>
-        <ul className="absolute top-[44px] left-2 w-[450px] p-3 rounded-md gap-3 opacity-0 invisible bg-slate-100 flex flex-wrap group-hover:opacity-100 group-hover:visible transition-all duration-300">
+        <ul className="invisible absolute left-2 top-[44px] flex w-[450px] flex-wrap gap-3 rounded-md bg-slate-100 p-3 opacity-0 transition-all duration-300 group-hover:visible group-hover:opacity-100">
           <li className="hover:underline">brand</li>
           <li className="hover:underline">brand</li>
           <li className="hover:underline">brand</li>
@@ -69,20 +69,20 @@ const NavLinks = () => {
       </li>
 
       <Link
-        onClick={() => handleFilterByCategory("deals", "with-discount")}
+        onClick={() => handleFilterByCategory('deals', 'with-discount')}
         to="c"
         smooth={true}
         duration={SCROLL_DURATION}
       >
-        <li className="flex cursor-pointer items-center h-full group transition-transform duration-300 hover:translate-y-[-2px]">
-          DEALS{" "}
+        <li className="group flex h-full cursor-pointer items-center transition-transform duration-300 hover:translate-y-[-2px]">
+          DEALS{' '}
         </li>
       </Link>
-      <li className="flex cursor-pointer items-center h-full group transition-transform duration-300 hover:translate-y-[-2px]">
+      <li className="group flex h-full cursor-pointer items-center transition-transform duration-300 hover:translate-y-[-2px]">
         DELIVERY
       </li>
     </ul>
-  );
-};
+  )
+}
 
-export default NavLinks;
+export default NavLinks

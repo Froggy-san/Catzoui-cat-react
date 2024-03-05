@@ -1,14 +1,14 @@
-import supabase, { supabaseUrl } from "./supabase";
+import supabase, { supabaseUrl } from './supabase'
 
 interface signUpProps {
-  avatar: File[] | [];
-  building_num: string;
-  city: string;
-  email: string;
-  phone: string;
-  street: string;
-  username: string;
-  password: string;
+  avatar: File[] | []
+  building_num: string
+  city: string
+  email: string
+  phone: string
+  street: string
+  username: string
+  password: string
 }
 
 export async function signup({
@@ -39,18 +39,18 @@ export async function signup({
   //     .from("avaters")
   //     .upload(fileName, avatar); // just watch one of the videos where he uploads images, like video 24 7mins .
 
-  let imageName;
-  let imagePath;
+  let imageName
+  let imagePath
   if (avatar.length > 0) {
-    imageName = `avatar-${Math.random()}-${avatar[0].name}`.replace(/\//g, "");
+    imageName = `avatar-${Math.random()}-${avatar[0].name}`.replace(/\//g, '')
     //danikyifviurhveealoe.supabase.co/storage/v1/object/public/avatar/402655289_360577659974552_7874423053522086265_n.jpg?t=2024-02-21T19%3A12%3A38.469Z
-    imagePath = `${supabaseUrl}/storage/v1/object/public/avatar/${imageName}`;
+    imagePath = `${supabaseUrl}/storage/v1/object/public/avatar/${imageName}`
   } else {
-    imageName = "";
-    imagePath = "";
+    imageName = ''
+    imagePath = ''
   }
 
-  console.log(imagePath, "imagepath here !!");
+  console.log(imagePath, 'imagepath here !!')
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -67,68 +67,68 @@ export async function signup({
         avater: imagePath,
       },
     },
-  });
+  })
 
-  console.log(data, "data from signup!!!>>>");
-  if (error) throw error;
+  console.log(data, 'data from signup!!!>>>')
+  if (error) throw error
 
-  if (!error && imageName !== "") {
+  if (!error && imageName !== '') {
     const { error: storageError } = await supabase.storage
-      .from("avatar")
-      .upload(imageName, avatar[0]);
+      .from('avatar')
+      .upload(imageName, avatar[0])
 
-    if (storageError) console.error(storageError, "erorr from api");
+    if (storageError) console.error(storageError, 'erorr from api')
   }
 
-  return data;
+  return data
 }
 
 export async function login({
   email,
   password,
 }: {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
-  });
+  })
 
-  if (error) throw error;
+  if (error) throw error
 
-  return data;
+  return data
 }
 
 export async function getCurrentUser() {
   /// this will get the data from localstorage , if it exists of course .
-  const { data: session } = await supabase.auth.getSession();
+  const { data: session } = await supabase.auth.getSession()
 
   /// it seems obvious but am ganna say it anyways , so if the user's data isn't in the localStorage it iwll return null , so we are ganna get the user's data some other way , like redirectiong the user to the login page or soemthing , i don't know up until this point .
-  if (!session.session) return null;
+  if (!session.session) return null
 
-  const { data, error } = await supabase.auth.getUser();
-  console.log(data);
+  const { data, error } = await supabase.auth.getUser()
+  console.log(data)
 
-  if (error) throw new Error(error.message);
+  if (error) throw new Error(error.message)
 
-  return data?.user;
+  return data?.user
 }
 
 export async function logout() {
-  const { error } = await supabase.auth.signOut();
-  if (error) throw new Error(`Had truble loging out`);
+  const { error } = await supabase.auth.signOut()
+  if (error) throw new Error(`Had truble loging out`)
 }
 
 interface updateUser {
-  password?: string;
-  username?: string;
-  street?: string;
-  phone?: string;
-  city?: string;
-  building_num?: string;
-  imageToRemove?: string;
-  avatar?: string | File[];
+  password?: string
+  username?: string
+  street?: string
+  phone?: string
+  city?: string
+  building_num?: string
+  imageToRemove?: string
+  avatar?: string | File[]
 }
 
 export async function updateUser({
@@ -150,57 +150,57 @@ export async function updateUser({
     building_num,
     imageToRemove,
     avatar,
-    "DATA RECEIVED BY THE UPDATING API"
-  );
+    'DATA RECEIVED BY THE UPDATING API'
+  )
 
   if (password) {
     const { error } = await supabase.auth.updateUser({
       password,
-    });
+    })
 
-    if (error) throw new Error(`Had truble updating the password`);
+    if (error) throw new Error(`Had truble updating the password`)
   }
 
-  let imageName;
-  let imagePath;
-  if (avatar && typeof avatar !== "string") {
-    imageName = `avatar-${Math.random()}-${avatar[0].name}`.replace(/\//g, "");
+  let imageName
+  let imagePath
+  if (avatar && typeof avatar !== 'string') {
+    imageName = `avatar-${Math.random()}-${avatar[0].name}`.replace(/\//g, '')
     //danikyifviurhveealoe.supabase.co/storage/v1/object/public/avatar/402655289_360577659974552_7874423053522086265_n.jpg?t=2024-02-21T19%3A12%3A38.469Z
-    imagePath = `${supabaseUrl}/storage/v1/object/public/avatar/${imageName}`;
+    imagePath = `${supabaseUrl}/storage/v1/object/public/avatar/${imageName}`
   } else {
-    imageName = "";
-    imagePath = "";
+    imageName = ''
+    imagePath = ''
   }
 
-  console.log(imagePath, "imagepath here !!");
+  console.log(imagePath, 'imagepath here !!')
 
   const { data, error } = await supabase.auth.updateUser({
     data: { username, street, phone, city, building_num },
-  });
+  })
 
-  if (avatar && typeof avatar !== "string") {
+  if (avatar && typeof avatar !== 'string') {
     const { error: updateProfilePicError } = await supabase.auth.updateUser({
       data: { avater: imagePath },
-    });
+    })
 
     if (updateProfilePicError)
-      throw new Error(`had truble updating the profile picture`);
+      throw new Error(`had truble updating the profile picture`)
   }
 
-  if (!error && avatar && imageName !== "") {
+  if (!error && avatar && imageName !== '') {
     const { error: storageError } = await supabase.storage
-      .from("avatar")
-      .upload(imageName, avatar[0]);
+      .from('avatar')
+      .upload(imageName, avatar[0])
 
-    if (storageError) console.error(storageError, "erorr from api");
+    if (storageError) console.error(storageError, 'erorr from api')
 
     if (!storageError && imageToRemove) {
       const { error } = await supabase.storage
-        .from("avatar")
-        .remove([imageToRemove]);
-      if (error) throw new Error(`profile image didn't get deleted.`);
+        .from('avatar')
+        .remove([imageToRemove])
+      if (error) throw new Error(`profile image didn't get deleted.`)
     }
   }
 
-  return data;
+  return data
 }

@@ -1,31 +1,31 @@
-import { useDispatch } from "react-redux";
-import { deleteFromWishList } from "./wishListSlice";
-import { useNavigate } from "react-router-dom";
-import { scrollToTheTop } from "@/utils/helper";
-import WishCarousel from "./WishCarousel";
-import { Button } from "@/components/ui/button";
+import { useDispatch } from 'react-redux'
+import { deleteFromWishList } from './wishListSlice'
+import { useNavigate } from 'react-router-dom'
+import { scrollToTheTop } from '@/utils/helper'
+import WishCarousel from './WishCarousel'
+import { Button } from '@/components/ui/button'
 
 interface WishedItemProps {
-  id: number;
-  name: string;
-  category: string;
+  id: number
+  name: string
+  category: string
   ProductImages: {
-    image_url: string | null;
-  }[];
+    image_url: string | null
+  }[]
 }
 
 const WishedItem = ({
   wishedItem,
 }: {
-  wishedItem: WishedItemProps | undefined;
+  wishedItem: WishedItemProps | undefined
 }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const images = wishedItem?.ProductImages.map((image) => image.image_url);
+  const images = wishedItem?.ProductImages.map((image) => image.image_url)
 
   return (
-    <div className="flex flex-col  gap-2 p-4 border rounded-lg">
+    <div className="flex flex-col  gap-2 rounded-lg border p-4">
       <WishCarousel slides={[1, 2, 3, 4, 5]} images={images} />
 
       <h1 className="h-[70px] overflow-hidden ">{wishedItem?.name}</h1>
@@ -33,8 +33,8 @@ const WishedItem = ({
         <Button
           onClick={() => {
             // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-            scrollToTheTop();
-            dispatch(deleteFromWishList(wishedItem?.id));
+            scrollToTheTop()
+            dispatch(deleteFromWishList(wishedItem?.id))
           }}
           variant="outline"
         >
@@ -45,7 +45,7 @@ const WishedItem = ({
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default WishedItem;
+export default WishedItem

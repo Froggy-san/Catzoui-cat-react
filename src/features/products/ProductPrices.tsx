@@ -1,19 +1,19 @@
-import { formatCurrency } from "@/utils/helper";
+import { formatCurrency } from '@/utils/helper'
 
 const ProductPrices = ({
   price,
   discount,
 }: {
-  price: number | undefined;
-  discount: number | undefined;
+  price: number | undefined
+  discount: number | undefined
 }) => {
-  const thereIsDiscount = discount !== 0;
+  const thereIsDiscount = discount !== 0
 
   return (
     <div className="flex gap-3 font-semibold">
       <span
         className={`${
-          thereIsDiscount && "line-through text-priceWithDiscount"
+          thereIsDiscount && 'text-priceWithDiscount line-through'
         }`}
       >
         {formatCurrency(price || 1)}
@@ -25,7 +25,7 @@ const ProductPrices = ({
           : null}
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default ProductPrices;
+export default ProductPrices

@@ -1,26 +1,26 @@
-import React from "react";
-import { PiHeartBreakLight, PiHeartFill } from "react-icons/pi";
+import React from 'react'
+import { PiHeartBreakLight, PiHeartFill } from 'react-icons/pi'
 
-import { CiHeart } from "react-icons/ci";
-import { IoMdHeart } from "react-icons/io";
-import useHover from "@/hooks/useHover";
+import { CiHeart } from 'react-icons/ci'
+import { IoMdHeart } from 'react-icons/io'
+import useHover from '@/hooks/useHover'
 function WishButton({
   isWished,
   handleWishList,
   className,
   iconSize = 20,
 }: {
-  isWished: boolean;
-  handleWishList: () => void;
-  className?: string;
-  iconSize?: number;
+  isWished: boolean
+  handleWishList: () => void
+  className?: string
+  iconSize?: number
 }) {
-  const [ref, hover] = useHover();
+  const [ref, hover] = useHover()
 
   return (
     <span
       onClick={handleWishList}
-      className={`rounded-lg p-[.3rem] bg-oldCatBg cursor-pointer ${className}`}
+      className={`cursor-pointer rounded-lg bg-oldCatBg p-[.3rem] ${className}`}
       // onMouseEnter={() => setHover(true)}
       // onMouseOut={() => setHover(false)}
       ref={ref as React.LegacyRef<HTMLSpanElement>}
@@ -30,7 +30,7 @@ function WishButton({
       {!hover && isWished && <IoMdHeart size={iconSize} />}
       {!hover && !isWished && <CiHeart size={iconSize} />}
     </span>
-  );
+  )
 }
 
-export default WishButton;
+export default WishButton

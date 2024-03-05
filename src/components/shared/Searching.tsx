@@ -1,68 +1,68 @@
-import React, { createContext, forwardRef, useContext, useState } from "react";
-import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
-import useSearchTerm from "@/features/products/useSearch";
-import useDebounce from "@/hooks/useDebounce";
+import React, { createContext, forwardRef, useContext, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
+import useSearchTerm from '@/features/products/useSearch'
+import useDebounce from '@/hooks/useDebounce'
 
-import UilityButton from "./UilityButton";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { CgSearchLoading } from "react-icons/cg";
-import { CiSearch } from "react-icons/ci";
+import UilityButton from './UilityButton'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
+import { CgSearchLoading } from 'react-icons/cg'
+import { CiSearch } from 'react-icons/ci'
 
 interface images {
-  image_url: string | null;
+  image_url: string | null
 }
 
 interface searchResult {
-  ProductImages: images[];
-  category: string;
-  id: number;
-  name: string;
+  ProductImages: images[]
+  category: string
+  id: number
+  name: string
 }
 
 interface SearchContextValue {
-  handleOpen: (e?: MouseEvent) => void;
-  isOpen: boolean;
-  searchTerm: string;
-  close: () => void;
-  setSearchTerm: (value: string) => void;
-  results: searchResult[] | [];
-  isLoading: boolean;
+  handleOpen: (e?: MouseEvent) => void
+  isOpen: boolean
+  searchTerm: string
+  close: () => void
+  setSearchTerm: (value: string) => void
+  results: searchResult[] | []
+  isLoading: boolean
 }
 
 // Create the context with the interface as a type parameter
 const SearchContext = createContext<SearchContextValue>({
   handleOpen: () => {},
   isOpen: false,
-  searchTerm: "",
+  searchTerm: '',
   close: () => {},
   setSearchTerm: () => {},
   results: [],
   isLoading: false,
-});
+})
 
 const Searching = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   // this is a hook provided by react query , that allows us to set a timeout while searching so we don't make alot of requests to the api.
-  const debouncedValue = useDebounce(searchTerm, 500);
+  const debouncedValue = useDebounce(searchTerm, 500)
 
-  const { isLoading, seachResults } = useSearchTerm(debouncedValue);
+  const { isLoading, seachResults } = useSearchTerm(debouncedValue)
 
-  const results = seachResults || [];
-  console.log(seachResults, "Search results here !!!??>>>>");
+  const results = seachResults || []
+  console.log(seachResults, 'Search results here !!!??>>>>')
 
   const handleOpen = (e?: MouseEvent) => {
-    e?.stopPropagation();
-    setIsOpen((is) => !is);
-  };
+    e?.stopPropagation()
+    setIsOpen((is) => !is)
+  }
 
   const close = () => {
     // console.log("is the clsoe function working ?? !!");
     // setSearchTerm("");
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
   return (
     <SearchContext.Provider
       value={{
@@ -77,17 +77,17 @@ const Searching = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
     </SearchContext.Provider>
-  );
-};
+  )
+}
 
 function Toggle() {
-  const { handleOpen } = useContext(SearchContext);
+  const { handleOpen } = useContext(SearchContext)
 
   return (
     <UilityButton onClick={handleOpen}>
       <CiSearch />
     </UilityButton>
-  );
+  )
 }
 
 const SearchBar = forwardRef(function SearchBar(
@@ -95,7 +95,7 @@ const SearchBar = forwardRef(function SearchBar(
   ref?: React.Ref<HTMLDivElement>
 ) {
   const { isOpen, searchTerm, setSearchTerm, results, isLoading } =
-    useContext(SearchContext);
+    useContext(SearchContext)
 
   // const navigate = useNavigate();
 
@@ -107,26 +107,26 @@ const SearchBar = forwardRef(function SearchBar(
           <div
             ref={ref}
             id="search-bar"
-            className=" fixed top-20 left-1/2 translate-x-[-50%] container z-50  px-2"
+            className=" container fixed left-1/2 top-20 z-50 translate-x-[-50%]  px-2"
           >
-            <div className="relative   mx-auto mb-2 shadow-xl rounded-bl-xl rounded-br-xl">
+            <div className="relative   mx-auto mb-2 rounded-bl-xl rounded-br-xl shadow-xl">
               <input
                 type="text"
                 autoFocus
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search..."
-                className="w-full h-full px-3 py-[5px] border border-gray-500 outline-none rounded"
+                className="h-full w-full rounded border border-gray-500 px-3 py-[5px] outline-none"
               />
 
-              <button className="absolute top-1/2 -translate-y-1/2 right-2">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2">
                 <CiSearch />
               </button>
             </div>
             {searchTerm.length ? (
-              <div className="w-full flex flex-col  overflow-y-auto  h-[450px] rounded-lg bg-[#ffffff]  gap-6 px-2 py-3 shadow-lg">
+              <div className="flex h-[450px] w-full  flex-col  gap-6 overflow-y-auto rounded-lg  bg-[#ffffff] px-2 py-3 shadow-lg">
                 {isLoading && (
-                  <div className="h-full flex justify-center items-center">
+                  <div className="flex h-full items-center justify-center">
                     <div className="flex items-center space-x-2">
                       <h1>Loading...</h1>
                       <AiOutlineLoading3Quarters
@@ -138,7 +138,7 @@ const SearchBar = forwardRef(function SearchBar(
                 )}
 
                 {!isLoading && !results.length ? (
-                  <div className="h-full flex justify-center items-center">
+                  <div className="flex h-full items-center justify-center">
                     <div className="flex items-center space-x-2">
                       <h1>No matchs</h1>
                       <CgSearchLoading size={20} />
@@ -152,12 +152,12 @@ const SearchBar = forwardRef(function SearchBar(
                       <Link
                         key={result.id}
                         to={`/?product=${result.id}`}
-                        className="flex items-center space-x-7 h-32 hover:bg-oldCatBg/60 px-2 py-3 rounded-lg"
+                        className="flex h-32 items-center space-x-7 rounded-lg px-2 py-3 hover:bg-oldCatBg/60"
                       >
-                        <div className="w-[120px] h-full overflow-hidden rounded-lg ">
+                        <div className="h-full w-[120px] overflow-hidden rounded-lg ">
                           <img
-                            src={result.ProductImages[0].image_url || ""}
-                            alt={result?.name || ""}
+                            src={result.ProductImages[0].image_url || ''}
+                            alt={result?.name || ''}
                             className="h-full w-full  "
                           />
                         </div>
@@ -177,16 +177,16 @@ const SearchBar = forwardRef(function SearchBar(
           document.body
         )}
     </>
-  );
-});
+  )
+})
 
 export function useSearchBarContext() {
-  const context = useContext(SearchContext);
+  const context = useContext(SearchContext)
   if (context === undefined)
-    throw new Error(`you have used the SearchContext wrong`);
-  return context;
+    throw new Error(`you have used the SearchContext wrong`)
+  return context
 }
 
-Searching.Toggle = Toggle;
-Searching.SearchBar = SearchBar;
-export default Searching;
+Searching.Toggle = Toggle
+Searching.SearchBar = SearchBar
+export default Searching

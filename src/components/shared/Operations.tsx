@@ -1,54 +1,54 @@
-import FitlerOperations from "./FitlerOperations";
-import { CiDiscount1 } from "react-icons/ci";
+import FitlerOperations from './FitlerOperations'
+import { CiDiscount1 } from 'react-icons/ci'
 
 const Operations = () => {
   return (
-    <div className="flex flex-col xl:flex-row gap-y-20 md:gap-y-12  rounded-3xl">
-      <div className="flex  items-center flex-wrap  gap-x-1 gap-y-3 flex-1">
+    <div className="flex flex-col gap-y-20 rounded-3xl md:gap-y-12  xl:flex-row">
+      <div className="flex  flex-1 flex-wrap  items-center gap-x-1 gap-y-3">
         <FitlerOperations
-          className=" flex gap-1 flex-wrap"
+          className=" flex flex-wrap gap-1"
           filterFiled="filter"
           options={[
-            { value: "all", label: "All" },
+            { value: 'all', label: 'All' },
             // { value: "no-discount", label: "NO DISCOUNT" },
             // { value: "with-discount", label: "WITH DISCOUNT" },
-            { value: "clothing", label: "FASHION" },
-            { value: "electronics", label: "ELECTRONICS" },
+            { value: 'clothing', label: 'FASHION' },
+            { value: 'electronics', label: 'ELECTRONICS' },
           ]}
         />
 
         <FitlerOperations
-          className=" flex gap-1 flex-wrap"
+          className=" flex flex-wrap gap-1"
           filterFiled="range"
           options={[
-            { value: "0,50", label: "$0-$50" },
-            { value: "50,200", label: "$50-$200" },
-            { value: "200,600", label: "$200-$600" },
-            { value: "600,999999", label: "$600-above" },
+            { value: '0,50', label: '$0-$50' },
+            { value: '50,200', label: '$50-$200' },
+            { value: '200,600', label: '$200-$600' },
+            { value: '600,999999', label: '$600-above' },
           ]}
         />
         <FitlerOperations
-          className=" flex gap-1 flex-wrap"
+          className=" flex flex-wrap gap-1"
           filterFiled="deals"
           options={[
-            { value: "with-discount", label: <CiDiscount1 size={20} /> },
+            { value: 'with-discount', label: <CiDiscount1 size={20} /> },
           ]}
         />
       </div>
       {/*  justify-end */}
       <div className="">
         <FitlerOperations
-          className="flex gap-1 flex-row-reverse flex-wrap"
+          className="flex flex-row-reverse flex-wrap gap-1"
           filterFiled="sortBy"
           options={[
             {
-              value: "name-asc",
-              label: "BRANDS (A-Z)",
+              value: 'name-asc',
+              label: 'BRANDS (A-Z)',
             },
 
-            { value: "price_per_unit-asc", label: "Price (low first)" },
+            { value: 'price_per_unit-asc', label: 'Price (low first)' },
 
-            { value: "average_rating-asc", label: "RATING" },
+            { value: 'average_rating-asc', label: 'RATING' },
           ]}
         />
 
@@ -60,7 +60,7 @@ const Operations = () => {
         </div> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Operations;
+export default Operations

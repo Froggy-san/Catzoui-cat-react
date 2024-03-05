@@ -2,14 +2,14 @@ const Empty = ({
   message,
   icon,
 }: {
-  message: string;
-  icon?: () => JSX.Element;
+  message: string
+  icon?: () => JSX.Element
 }) => {
   return (
-    <div className="flex g items-center     h-full gap-5 justify-center text-xl">
+    <div className="g flex h-full     items-center justify-center gap-5 text-xl">
       {message} {icon?.()}
     </div>
-  );
-};
+  )
+}
 
-export default Empty;
+export default Empty

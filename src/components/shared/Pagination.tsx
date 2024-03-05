@@ -1,46 +1,46 @@
-import React, { forwardRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { forwardRef } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
-import { Button } from "../ui/button";
-import { PAGE_SIZE } from "@/utils/constants";
-import { Link } from "react-scroll";
+import { Button } from '../ui/button'
+import { PAGE_SIZE } from '@/utils/constants'
+import { Link } from 'react-scroll'
 
 const Pagination = forwardRef(function Pagination(
   {
     count,
   }: {
-    count: number | null | undefined;
-    handleIntoView?: () => void;
+    count: number | null | undefined
+    handleIntoView?: () => void
   },
   ref?: React.Ref<HTMLDivElement>
 ) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  const currentPage = !searchParams.get("page")
+  const currentPage = !searchParams.get('page')
     ? 1
-    : Number(searchParams.get("page"));
+    : Number(searchParams.get('page'))
 
-  const pageCount = count && Math.ceil(count / PAGE_SIZE);
+  const pageCount = count && Math.ceil(count / PAGE_SIZE)
 
   //   useEffect(() => {
   //     handleIntoView();
   //   }, [searchParams]);
   function nextPage() {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
+    const next = currentPage === pageCount ? currentPage : currentPage + 1
 
-    searchParams.set("page", String(next));
-    setSearchParams(searchParams);
+    searchParams.set('page', String(next))
+    setSearchParams(searchParams)
   }
   function prevPage() {
-    const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set("page", String(prev));
-    setSearchParams(searchParams);
+    const prev = currentPage === 1 ? currentPage : currentPage - 1
+    searchParams.set('page', String(prev))
+    setSearchParams(searchParams)
   }
 
-  if ((pageCount && pageCount <= 1) || count === 0) return null;
+  if ((pageCount && pageCount <= 1) || count === 0) return null
 
   return (
-    <div ref={ref} className="flex justify-between mt-6 items-center ">
+    <div ref={ref} className="mt-6 flex items-center justify-between ">
       <Link
         to="c"
         smooth={true}
@@ -73,7 +73,7 @@ const Pagination = forwardRef(function Pagination(
         </Button>
       </Link>
     </div>
-  );
-});
+  )
+})
 
-export default Pagination;
+export default Pagination

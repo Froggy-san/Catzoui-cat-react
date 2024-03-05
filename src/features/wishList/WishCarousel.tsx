@@ -1,21 +1,21 @@
-import React from "react";
-import { EmblaOptionsType } from "embla-carousel";
-import { DotButton, useDotButton } from "./WishCarouselDots";
+import React from 'react'
+import { EmblaOptionsType } from 'embla-carousel'
+import { DotButton, useDotButton } from './WishCarouselDots'
 
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel from 'embla-carousel-react'
 
 type PropType = {
-  slides: number[];
-  options?: EmblaOptionsType;
-  images: (string | null)[] | undefined;
-};
+  slides: number[]
+  options?: EmblaOptionsType
+  images: (string | null)[] | undefined
+}
 
 const WishCarousel: React.FC<PropType> = (props) => {
-  const { options, images } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const { options, images } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options)
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi);
+    useDotButton(emblaApi)
 
   return (
     <section className="embla_wish relative flex-1">
@@ -25,9 +25,9 @@ const WishCarousel: React.FC<PropType> = (props) => {
             images.map((image, index) => (
               <div className="embla__slide_wish" key={index}>
                 <img
-                  src={image || ""}
+                  src={image || ''}
                   alt="asdsa"
-                  className="w-full h-full object-cover rounded-lg"
+                  className="h-full w-full rounded-lg object-cover"
                 />
               </div>
             ))}
@@ -35,20 +35,20 @@ const WishCarousel: React.FC<PropType> = (props) => {
       </div>
 
       <div className="embla__controls_wish">
-        <div className="embla__dots px-2 py-1 rounded-lg  gap-3 absolute bottom-0 bg-secondary/60 backdrop-blur-3xl">
+        <div className="embla__dots absolute bottom-0 gap-3  rounded-lg bg-secondary/60 px-2 py-1 backdrop-blur-3xl">
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={"embla__dot".concat(
-                index === selectedIndex ? " embla__dot--selected" : ""
+              className={'embla__dot'.concat(
+                index === selectedIndex ? ' embla__dot--selected' : ''
               )}
             />
           ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WishCarousel;
+export default WishCarousel

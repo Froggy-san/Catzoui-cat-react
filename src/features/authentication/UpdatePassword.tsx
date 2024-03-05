@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -12,52 +12,52 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
-import useUpdateUser from "./useUpdateUser";
+import useUpdateUser from './useUpdateUser'
 
 const formSchema = z
   .object({
     password: z
       .string()
-      .min(8, { message: "Too short" })
-      .max(33, { message: "Too long" }),
+      .min(8, { message: 'Too short' })
+      .max(33, { message: 'Too long' }),
 
     confirmPassword: z
       .string()
-      .min(8, { message: "Too short" })
-      .max(33, { message: "Too long" }),
+      .min(8, { message: 'Too short' })
+      .max(33, { message: 'Too long' }),
   })
   .refine(
     (data) => {
-      return data.password === data.confirmPassword;
+      return data.password === data.confirmPassword
     },
     {
       message: "Passwords don't match. Make sure you typed the right password.",
-      path: ["confirmPassword"],
+      path: ['confirmPassword'],
     }
-  );
+  )
 
 const UpdatePassword = () => {
-  const { updateUserData, isUpdating } = useUpdateUser();
+  const { updateUserData, isUpdating } = useUpdateUser()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
+      password: '',
+      confirmPassword: '',
     },
-  });
+  })
 
   function onSubmit({ password }: z.infer<typeof formSchema>) {
-    updateUserData({ password });
+    updateUserData({ password })
 
-    form.reset();
+    form.reset()
   }
 
   return (
-    <div className="px-5 py-6 rounded-2xl border mb-8">
+    <div className="mb-8 rounded-2xl border px-5 py-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -100,7 +100,7 @@ const UpdatePassword = () => {
             )}
           />
 
-          <div className="flex items-center space-x-3 justify-end">
+          <div className="flex items-center justify-end space-x-3">
             <Button
               onClick={() => form.reset()}
               type="button"
@@ -113,7 +113,7 @@ const UpdatePassword = () => {
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default UpdatePassword;
+export default UpdatePassword

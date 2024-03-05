@@ -1,5 +1,5 @@
-import { getProductById } from "@/services/apiProducts";
-import { useQuery } from "@tanstack/react-query";
+import { getProductById } from '@/services/apiProducts'
+import { useQuery } from '@tanstack/react-query'
 
 export function useGetProductById(id: string) {
   const {
@@ -8,10 +8,10 @@ export function useGetProductById(id: string) {
     error,
   } = useQuery({
     queryFn: () => getProductById(id),
-    queryKey: ["product", id],
-// if there is no id don't run the hook.
+    queryKey: ['product', id],
+    // if there is no id don't run the hook.
     enabled: !!id,
-  });
+  })
 
-  return { isLoading, product, error };
+  return { isLoading, product, error }
 }

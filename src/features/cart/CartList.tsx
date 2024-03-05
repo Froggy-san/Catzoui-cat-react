@@ -1,20 +1,20 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import EmptyCart from "./EmptyCart";
-import CartItem from "./CartItem";
-import { getCart } from "@/features/cart/cartSlice";
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import EmptyCart from './EmptyCart'
+import CartItem from './CartItem'
+import { getCart } from '@/features/cart/cartSlice'
 
 const CartList = () => {
-  const cart = useSelector(getCart);
+  const cart = useSelector(getCart)
 
-  console.log(cart, "cart from cart <<");
+  console.log(cart, 'cart from cart <<')
   useEffect(() => {
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    sessionStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
-  console.log(cart);
+  console.log(cart)
   return (
-    <div className="w-[97%] mx-auto p-5 rounded-xl border border-slate-300 space-y-6 divide-y-2">
+    <div className="mx-auto w-[97%] space-y-6 divide-y-2 rounded-xl border border-slate-300 p-5">
       {!cart.length && <EmptyCart />}
 
       {cart.length
@@ -23,7 +23,7 @@ const CartList = () => {
           ))
         : null}
     </div>
-  );
-};
+  )
+}
 
-export default CartList;
+export default CartList

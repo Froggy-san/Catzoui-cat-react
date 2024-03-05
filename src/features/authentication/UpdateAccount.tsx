@@ -1,11 +1,11 @@
-"use client";
-import { useUser } from "./useUser";
-import useUpdateUser from "./useUpdateUser";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+'use client'
+import { useUser } from './useUser'
+import useUpdateUser from './useUpdateUser'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -13,12 +13,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
+} from '@/components/ui/form'
 
-import { Input } from "@/components/ui/input";
-import Avatar from "./Avatar";
-import { validateEgyptianPhoneNumber } from "@/utils/helper";
-import FormRow from "@/components/shared/FormRow";
+import { Input } from '@/components/ui/input'
+import Avatar from './Avatar'
+import { validateEgyptianPhoneNumber } from '@/utils/helper'
+import FormRow from '@/components/shared/FormRow'
 
 const formSchema = z
   .object({
@@ -32,33 +32,33 @@ const formSchema = z
   })
   .refine(
     (data) => {
-      return validateEgyptianPhoneNumber(data.phone);
+      return validateEgyptianPhoneNumber(data.phone)
     },
     {
       message: `Phone number must match the patterns of Egyptian phone numbers`,
-      path: ["phone"],
+      path: ['phone'],
     }
-  );
+  )
 
 const UpdateAccount = () => {
-  const { user } = useUser();
-  const { updateUserData, isUpdating } = useUpdateUser();
+  const { user } = useUser()
+  const { updateUserData, isUpdating } = useUpdateUser()
   //   const navigate = useNavigate();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: user?.email || "",
+      email: user?.email || '',
       //   password: "",
       //   confirmPassword: "",
-      username: user?.user_metadata.username || "",
-      city: user?.user_metadata.city || "",
-      street: user?.user_metadata.street || "",
-      building_num: user?.user_metadata.building_num || "",
-      phone: user?.user_metadata.phone || "",
+      username: user?.user_metadata.username || '',
+      city: user?.user_metadata.city || '',
+      street: user?.user_metadata.street || '',
+      building_num: user?.user_metadata.building_num || '',
+      phone: user?.user_metadata.phone || '',
       avatar: user?.user_metadata.avatar || [],
     },
-  });
+  })
 
   function onSubmit({
     email,
@@ -79,8 +79,8 @@ const UpdateAccount = () => {
       street,
       building_num,
       avatar,
-      "updated here ?1 ??!!!!"
-    );
+      'updated here ?1 ??!!!!'
+    )
 
     updateUserData({
       username,
@@ -88,13 +88,13 @@ const UpdateAccount = () => {
       city,
       street,
       building_num,
-      imageToRemove: user?.user_metadata.avater.split("avatar/")[1],
-      avatar: !avatar.length ? "" : avatar,
-    });
+      imageToRemove: user?.user_metadata.avater.split('avatar/')[1],
+      avatar: !avatar.length ? '' : avatar,
+    })
   }
 
   return (
-    <div className=" px-5 py-6 rounded-2xl border">
+    <div className=" rounded-2xl border px-5 py-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormRow>
@@ -237,13 +237,13 @@ const UpdateAccount = () => {
               </FormItem>
             )}
           />
-          <div className="flex items-center space-x-3 justify-end">
+          <div className="flex items-center justify-end space-x-3">
             <Button
               disabled={isUpdating}
               type="button"
               variant="secondary"
               onClick={() => {
-                form.reset();
+                form.reset()
               }}
             >
               Cancel
@@ -255,7 +255,7 @@ const UpdateAccount = () => {
         </form>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default UpdateAccount;
+export default UpdateAccount

@@ -1,15 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
 const useScrollIntoView = () => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
   function handleScrollIntoView() {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    ref.current?.scrollIntoView({ behavior: 'smooth' })
   }
   useEffect(() => {
-    handleScrollIntoView();
-  }, []);
+    handleScrollIntoView()
+  }, [])
 
-  return ref;
-};
+  return ref
+}
 
-export default useScrollIntoView;
+export default useScrollIntoView

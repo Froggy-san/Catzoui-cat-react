@@ -1,19 +1,19 @@
-import { memo } from "react";
-import { useProducts } from "./useGetProducts";
-import ProductItem from "./ProductItem";
-import ProductLoading from "./ProductLoading";
-import ProductMenuBar from "./ProductMenuBar";
-import Pagination from "@/components/shared/Pagination";
-import Empty from "@/components/shared/Empty";
+import { memo } from 'react'
+import { useProducts } from './useGetProducts'
+import ProductItem from './ProductItem'
+import ProductLoading from './ProductLoading'
+import ProductMenuBar from './ProductMenuBar'
+import Pagination from '@/components/shared/Pagination'
+import Empty from '@/components/shared/Empty'
 
-import { CgSearchLoading } from "react-icons/cg";
-import { ImSad2 } from "react-icons/im";
+import { CgSearchLoading } from 'react-icons/cg'
+import { ImSad2 } from 'react-icons/im'
 
 const ProductsList = () => {
-  const { isLoading, products, error, count } = useProducts();
+  const { isLoading, products, error, count } = useProducts()
 
   return (
-    <div id="c" className="container px-4 xs:px-8 my-20">
+    <div id="c" className="container my-20 px-4 xs:px-8">
       <div className="">
         <ProductMenuBar />
       </div>
@@ -30,7 +30,7 @@ const ProductsList = () => {
           message="Somthing went wrong..."
         />
       )}
-      <ul className={`grid gap-4 px-0 xs:px-7 sm:px-0  product-list`}>
+      <ul className={`product-list grid gap-4 px-0 xs:px-7  sm:px-0`}>
         {isLoading && <LoadingProduct />}
         {!isLoading && error && (
           <p>
@@ -45,10 +45,10 @@ const ProductsList = () => {
       </ul>
       <Pagination count={count} />
     </div>
-  );
-};
+  )
+}
 
-export default ProductsList;
+export default ProductsList
 
 const LoadingProduct = memo(function LoadingProduct() {
   return (
@@ -57,5 +57,5 @@ const LoadingProduct = memo(function LoadingProduct() {
         <ProductLoading key={index} />
       ))}
     </>
-  );
-});
+  )
+})

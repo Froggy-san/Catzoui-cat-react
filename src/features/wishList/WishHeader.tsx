@@ -1,14 +1,14 @@
-import { useUser } from "../authentication/useUser";
-import { TiHeartFullOutline } from "react-icons/ti";
+import { useUser } from '../authentication/useUser'
+import { TiHeartFullOutline } from 'react-icons/ti'
 
 const WishHeader = () => {
-  const { user } = useUser();
+  const { user } = useUser()
   return (
-    <div className="text-2xl my-24 font-semibold flex items-center justify-center gap-3">
-      <span>{user?.user_metadata.username + "'s"} Wish list</span>{" "}
-      <TiHeartFullOutline size={30} />{" "}
+    <div className="my-24 flex items-center justify-center gap-3 text-2xl font-semibold">
+      <span>{user?.user_metadata.username + "'s"} Wish list</span>{' '}
+      <TiHeartFullOutline size={30} />{' '}
     </div>
-  );
-};
+  )
+}
 
-export default WishHeader;
+export default WishHeader

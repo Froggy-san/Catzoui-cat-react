@@ -1,60 +1,60 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import WishButton from "./WishButton";
-import { RiShoppingBag3Line } from "react-icons/ri";
-import { Button } from "@/components/ui/button";
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import WishButton from './WishButton'
+import { RiShoppingBag3Line } from 'react-icons/ri'
+import { Button } from '@/components/ui/button'
 import {
   addItemToWishList,
   deleteFromWishList,
-} from "@/features/wishList/wishListSlice";
-import { toast } from "sonner";
-import { HeartCrack } from "lucide-react";
-import useSetItemFromStorage from "@/hooks/useSetItemFromStorage";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, cartItem } from "@/Types/type";
-import { PiHeartStraightFill } from "react-icons/pi";
-import { LuShoppingBasket } from "react-icons/lu";
+} from '@/features/wishList/wishListSlice'
+import { toast } from 'sonner'
+import { HeartCrack } from 'lucide-react'
+import useSetItemFromStorage from '@/hooks/useSetItemFromStorage'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState, cartItem } from '@/Types/type'
+import { PiHeartStraightFill } from 'react-icons/pi'
+import { LuShoppingBasket } from 'react-icons/lu'
 
-import { CiDeliveryTruck } from "react-icons/ci";
+import { CiDeliveryTruck } from 'react-icons/ci'
 
-import { TiArrowSortedUp } from "react-icons/ti";
-import { TiArrowSortedDown } from "react-icons/ti";
+import { TiArrowSortedUp } from 'react-icons/ti'
+import { TiArrowSortedDown } from 'react-icons/ti'
 // import { CiTrash } from "react-icons/ci";
-import { TiShoppingCart } from "react-icons/ti";
+import { TiShoppingCart } from 'react-icons/ti'
 
-import { addItem } from "@/features/cart/cartSlice";
-import { Link } from "react-router-dom";
-import { formatCurrency } from "@/utils/helper";
-import Size from "./Size";
-import { FaRegWindowClose } from "react-icons/fa";
+import { addItem } from '@/features/cart/cartSlice'
+import { Link } from 'react-router-dom'
+import { formatCurrency } from '@/utils/helper'
+import Size from './Size'
+import { FaRegWindowClose } from 'react-icons/fa'
 
 interface images {
-  id: number;
-  image_url: string | null;
-  product_id: number | null;
+  id: number
+  image_url: string | null
+  product_id: number | null
 }
 
 interface Product {
-  ProductImages: images[] | undefined | null;
-  average_rating: number;
-  brand: string;
-  category: string;
-  color: string;
-  created_at: string;
-  description: string;
-  discount_amount: number;
-  id: number;
-  name: string;
-  price_per_unit: number;
-  size: string;
-  stock: number;
+  ProductImages: images[] | undefined | null
+  average_rating: number
+  brand: string
+  category: string
+  color: string
+  created_at: string
+  description: string
+  discount_amount: number
+  id: number
+  name: string
+  price_per_unit: number
+  size: string
+  stock: number
 }
 
 interface ProductOperationProps {
-  productId: string | null | undefined;
-  className?: string;
-  product: Product | undefined;
-  cartItems?: cartItem[] | null | undefined;
-  isDeleting?: boolean;
+  productId: string | null | undefined
+  className?: string
+  product: Product | undefined
+  cartItems?: cartItem[] | null | undefined
+  isDeleting?: boolean
 }
 
 const ProductOperations = ({
@@ -65,44 +65,44 @@ const ProductOperations = ({
   cartItems,
 }: ProductOperationProps) => {
   const initalSize =
-    (product && product?.size?.replace(/ /g, "").split(",").at(0)) || "";
+    (product && product?.size?.replace(/ /g, '').split(',').at(0)) || ''
   const initalColor =
-    (product && product?.color?.replace(/ /g, "").split(",").at(0)) || "";
+    (product && product?.color?.replace(/ /g, '').split(',').at(0)) || ''
 
-  const [chosenSize, setChosenSize] = useState(initalSize);
-  const [chosenColor, setChosenColor] = useState(initalColor);
-  const [count, setCount] = useState(1);
-  const { wishList } = useSelector((state: RootState) => state.wishList);
-  const dispatch = useDispatch();
+  const [chosenSize, setChosenSize] = useState(initalSize)
+  const [chosenColor, setChosenColor] = useState(initalColor)
+  const [count, setCount] = useState(1)
+  const { wishList } = useSelector((state: RootState) => state.wishList)
+  const dispatch = useDispatch()
 
-  let isWished: boolean = false;
+  let isWished: boolean = false
 
   // get the total quantity of the same product bought in cart.
   const quantityInCart = useMemo(() => {
     if (cartItems)
-      return cartItems.reduce((sum, currEl) => sum + currEl.quantity, 0);
-  }, [cartItems]);
+      return cartItems.reduce((sum, currEl) => sum + currEl.quantity, 0)
+  }, [cartItems])
 
   // check if it === the amount of stock available of the same product.
   const allBought =
-    quantityInCart && product ? quantityInCart >= product?.stock : false;
+    quantityInCart && product ? quantityInCart >= product?.stock : false
 
   // check if the item is in the wish list.
   if (productId) {
-    isWished = wishList.includes(+productId);
+    isWished = wishList.includes(+productId)
   }
 
-  useSetItemFromStorage("wishList", wishList);
+  useSetItemFromStorage('wishList', wishList)
 
   useEffect(() => {
-    setChosenColor(initalColor);
-    setChosenSize(initalSize);
-  }, [productId]);
+    setChosenColor(initalColor)
+    setChosenSize(initalSize)
+  }, [productId])
 
   function handleInc() {
-    if (count === product?.stock) return;
+    if (count === product?.stock) return
     if (quantityInCart && product && quantityInCart + count >= product?.stock)
-      return toast("Amount acceeded", {
+      return toast('Amount acceeded', {
         description: (
           <div className="flex items-center space-x-2">
             <span>
@@ -113,16 +113,16 @@ const ProductOperations = ({
         ),
 
         closeButton: true,
-      });
+      })
 
-    setCount((count) => count + 1);
+    setCount((count) => count + 1)
 
     // if (productId) dispatch(increaseQuantity(+productId));
   }
 
   function handleDec() {
-    if (count === 1) return;
-    setCount((count) => count - 1);
+    if (count === 1) return
+    setCount((count) => count - 1)
     // if (productId) dispatch(decreaseQuantity(+productId));
     /// you are probably wondering why do we check if the quanitiy is 1 , that is becasue the handleDec function will dec the quantity and right away check for the value, not update the state right away, so when ever the fucnton finishs executing  the state updates, so the quantity  here  inside the function is a stale state so we check if the quantitiy is bigger than actual state amount, if what am saying doesn't make sense , console.log(cartItem.quantity) once inside the dec function and once out side of the fucntion .
     // if (cartItem?.quantity === 1) {
@@ -134,8 +134,8 @@ const ProductOperations = ({
 
   const handleWishList = () => {
     if (isWished && productId) {
-      dispatch(deleteFromWishList(+productId));
-      toast("You have deleted an item from the wish list", {
+      dispatch(deleteFromWishList(+productId))
+      toast('You have deleted an item from the wish list', {
         description: (
           <div className="flex items-center space-x-2">
             <span>
@@ -145,16 +145,16 @@ const ProductOperations = ({
           </div>
         ),
         action: {
-          label: "Undo",
+          label: 'Undo',
           onClick: () => dispatch(addItemToWishList(+productId)),
         },
         closeButton: true,
-      });
+      })
     }
 
     if (!isWished && productId) {
-      dispatch(addItemToWishList(+productId));
-      toast("You have added an item to the wish list", {
+      dispatch(addItemToWishList(+productId))
+      toast('You have added an item to the wish list', {
         description: (
           <div className="flex items-center space-x-2">
             <span>
@@ -164,13 +164,13 @@ const ProductOperations = ({
           </div>
         ),
         action: {
-          label: "Undo",
+          label: 'Undo',
           onClick: () => dispatch(deleteFromWishList(+productId)),
         },
         closeButton: true,
-      });
+      })
     }
-  };
+  }
 
   function handleAddToCart() {
     dispatch(
@@ -185,12 +185,12 @@ const ProductOperations = ({
           ((product?.price_per_unit || 0) - (product?.discount_amount || 0)),
         totalPriceWithoutDiscount: 1 * (product?.price_per_unit || 0),
       })
-    );
+    )
 
-    setCount(1);
+    setCount(1)
     // setChosenColor(initalColor);
     // setChosenSize(initalSize);
-    toast("Item has been added to your shopping cart", {
+    toast('Item has been added to your shopping cart', {
       description: (
         <div className="flex items-center space-x-2">
           <span>
@@ -201,15 +201,15 @@ const ProductOperations = ({
       ),
 
       closeButton: true,
-    });
+    })
   }
 
   const handleChangeSize = useCallback(function (size: string) {
-    setChosenSize(size);
-  }, []);
+    setChosenSize(size)
+  }, [])
   const handleChangeColor = useCallback(function (color: string) {
-    setChosenColor(color);
-  }, []);
+    setChosenColor(color)
+  }, [])
   return (
     <>
       <Size
@@ -224,24 +224,24 @@ const ProductOperations = ({
 
       <div className={`flex items-center space-x-2 ${className}`}>
         {cartItems?.length ? (
-          <div className="flex flex-col sm:flex-row flex-1 gap-3  xs:mr-6">
+          <div className="flex flex-1 flex-col gap-3 xs:mr-6  sm:flex-row">
             <Button
               disabled={isDeleting || allBought}
-              className="gap-3 flex-1"
+              className="flex-1 gap-3"
               onClick={handleAddToCart}
             >
-              <RiShoppingBag3Line size={20} />{" "}
-              {allBought ? "Out of stock" : "Add to cart"}
+              <RiShoppingBag3Line size={20} />{' '}
+              {allBought ? 'Out of stock' : 'Add to cart'}
             </Button>
 
             <Button
               variant="secondary"
               disabled={isDeleting}
-              className="p-0 w-full  sm:w-[130px]"
+              className="w-full p-0  sm:w-[130px]"
             >
               <Link
                 to="cart"
-                className="flex  items-center justify-center gap-3 tracking-wide w-full h-full py-2 px-4"
+                className="flex  h-full w-full items-center justify-center gap-3 px-4 py-2 tracking-wide"
               >
                 <TiShoppingCart size={20} /> Go to cart
               </Link>
@@ -250,7 +250,7 @@ const ProductOperations = ({
         ) : (
           <Button
             disabled={isDeleting}
-            className="gap-3 flex-1 mr-8"
+            className="mr-8 flex-1 gap-3"
             onClick={handleAddToCart}
           >
             <RiShoppingBag3Line size={20} /> Add to cart
@@ -267,7 +267,7 @@ const ProductOperations = ({
           >
             <TiArrowSortedUp size={19} />
           </Button>
-          <span className={`${allBought && "opacity-80"}`}>{count}</span>
+          <span className={`${allBought && 'opacity-80'}`}>{count}</span>
           <Button
             variant="ghost"
             size="icon"
@@ -287,9 +287,9 @@ const ProductOperations = ({
         />
       </div>
 
-      <div className="flex items-center justify-between  font-semibold   mt-3">
+      <div className="mt-3 flex items-center  justify-between   font-semibold">
         <div className="flex items-center space-x-3 ">
-          {" "}
+          {' '}
           <CiDeliveryTruck size={20} />
           <p>Free delivery on orders over {formatCurrency(300)}</p>
         </div>
@@ -298,7 +298,7 @@ const ProductOperations = ({
         </span>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProductOperations;
+export default ProductOperations

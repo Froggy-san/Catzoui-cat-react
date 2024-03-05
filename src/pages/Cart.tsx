@@ -1,6 +1,6 @@
-import CartSummary from "@/features/cart/CartSummary";
-import CartHeader from "@/features/cart/CartHeader";
-import CartList from "@/features/cart/CartList";
+import CartSummary from '@/features/cart/CartSummary'
+import CartHeader from '@/features/cart/CartHeader'
+import CartList from '@/features/cart/CartList'
 
 const Cart = () => {
   return (
@@ -9,7 +9,7 @@ const Cart = () => {
       <CartList />
       <CartSummary />
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

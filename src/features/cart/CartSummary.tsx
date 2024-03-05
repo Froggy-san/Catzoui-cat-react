@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 import {
   clearCart,
   getCart,
   getTotalAfterDiscount,
   getTotalBeforeDiscount,
   getTotalItemQuantity,
-} from "@/features/cart/cartSlice";
+} from '@/features/cart/cartSlice'
 
 import {
   AlertDialog,
@@ -18,62 +18,62 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   //   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { useDispatch, useSelector } from "react-redux";
-import { MdOutlineRemoveShoppingCart } from "react-icons/md";
-import { toast } from "sonner";
-import { formatCurrency } from "@/utils/helper";
+} from '@/components/ui/alert-dialog'
+import { useDispatch, useSelector } from 'react-redux'
+import { MdOutlineRemoveShoppingCart } from 'react-icons/md'
+import { toast } from 'sonner'
+import { formatCurrency } from '@/utils/helper'
 const CartSummary = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const cart = useSelector(getCart);
-  const totalAmountBeforeDiscount = useSelector(getTotalBeforeDiscount);
+  const [isOpen, setIsOpen] = useState(false)
+  const cart = useSelector(getCart)
+  const totalAmountBeforeDiscount = useSelector(getTotalBeforeDiscount)
 
-  const totalAmountAfterDiscount = useSelector(getTotalAfterDiscount);
+  const totalAmountAfterDiscount = useSelector(getTotalAfterDiscount)
 
-  const totalQuantity = useSelector(getTotalItemQuantity);
+  const totalQuantity = useSelector(getTotalItemQuantity)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   function handleCloseDialog() {
-    setIsOpen(false);
+    setIsOpen(false)
   }
 
   function handleOpenDialog() {
     if (!cart.length)
       toast(
         <span className="flex items-center gap-3  font-semibold">
-          {" "}
+          {' '}
           There are no items to delete <MdOutlineRemoveShoppingCart size={20} />
         </span>
-      );
-    else setIsOpen(true);
+      )
+    else setIsOpen(true)
   }
 
   function handleDeletingAllItems() {
-    dispatch(clearCart());
+    dispatch(clearCart())
   }
 
   return (
     <>
-      <div className="px-3 py-5 rounded-lg mx-3 my-10 border-2">
-        <div className="flex flex-col gap-3  sm:flex-row justify-between">
+      <div className="mx-3 my-10 rounded-lg border-2 px-3 py-5">
+        <div className="flex flex-col justify-between  gap-3 sm:flex-row">
           <div>
             <h2 className="text-xl font-semibold">Summary order</h2>
             <div>
-              Total:{" "}
+              Total:{' '}
               <span className="text-lg font-semibold text-slate-300">
                 {formatCurrency(totalAmountBeforeDiscount)}
               </span>
             </div>
 
             <div>
-              Total after discount:{" "}
+              Total after discount:{' '}
               <span className="text-lg font-semibold text-red-600  ">
                 {formatCurrency(totalAmountAfterDiscount)}
               </span>
             </div>
 
             <div>
-              Total discount:{" "}
+              Total discount:{' '}
               <span className="text-lg font-semibold text-green-500">
                 {formatCurrency(
                   totalAmountBeforeDiscount - totalAmountAfterDiscount
@@ -85,7 +85,7 @@ const CartSummary = () => {
           <div className="flex items-end justify-end gap-2  ">
             <Button
               onClick={handleOpenDialog}
-              className=" bg-[#d6293e] text-red-100  border hover:bg-[#d6293e]/40 hover:text-red-500  tracking-wide"
+              className=" border bg-[#d6293e]  tracking-wide text-red-100 hover:bg-[#d6293e]/40  hover:text-red-500"
             >
               Delete ({totalQuantity})
             </Button>
@@ -100,7 +100,7 @@ const CartSummary = () => {
           <AlertDialogHeader>
             <AlertDialogTitle>
               Are you sure you want to delete all ({totalQuantity}) items from
-              cart?{" "}
+              cart?{' '}
             </AlertDialogTitle>
 
             <AlertDialogDescription>
@@ -113,8 +113,8 @@ const CartSummary = () => {
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
-                handleDeletingAllItems();
-                handleCloseDialog();
+                handleDeletingAllItems()
+                handleCloseDialog()
               }}
             >
               Continue
@@ -123,7 +123,7 @@ const CartSummary = () => {
         </AlertDialogContent>
       </AlertDialog>
     </>
-  );
-};
+  )
+}
 
-export default CartSummary;
+export default CartSummary

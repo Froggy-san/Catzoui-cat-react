@@ -1,56 +1,56 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { PiHeartStraightFill } from "react-icons/pi";
-import { HeartCrack } from "lucide-react";
-import { toast } from "sonner";
+import { PiHeartStraightFill } from 'react-icons/pi'
+import { HeartCrack } from 'lucide-react'
+import { toast } from 'sonner'
 
-import { formatCurrency } from "@/utils/helper";
-import { useSearchParams } from "react-router-dom";
-import useSetItemFromStorage from "@/hooks/useSetItemFromStorage";
-import { useDispatch, useSelector } from "react-redux";
+import { formatCurrency } from '@/utils/helper'
+import { useSearchParams } from 'react-router-dom'
+import useSetItemFromStorage from '@/hooks/useSetItemFromStorage'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   addItemToWishList,
   deleteFromWishList,
-} from "../wishList/wishListSlice";
-import WishButton from "./WishButton";
-import { RootState } from "@/Types/type";
-import StarRating from "@/components/shared/StarRating";
+} from '../wishList/wishListSlice'
+import WishButton from './WishButton'
+import { RootState } from '@/Types/type'
+import StarRating from '@/components/shared/StarRating'
 interface ProdcutImage {
-  id: number;
-  image_url: string | null;
-  product_id?: number | null; // change this to number
+  id: number
+  image_url: string | null
+  product_id?: number | null // change this to number
 }
 interface Product {
-  ProductImages: ProdcutImage[];
-  average_rating?: number;
-  brand: string; // add a question mark to make it optional
-  category: string;
-  color: string;
-  created_at: string;
-  description: string;
-  discount_amount: number;
-  id: number;
-  name: string;
-  price_per_unit: number;
-  size: string;
-  stock: number;
+  ProductImages: ProdcutImage[]
+  average_rating?: number
+  brand: string // add a question mark to make it optional
+  category: string
+  color: string
+  created_at: string
+  description: string
+  discount_amount: number
+  id: number
+  name: string
+  price_per_unit: number
+  size: string
+  stock: number
 }
 
 const ProductItem = ({ product }: { product: Product }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { wishList } = useSelector((state: RootState) => state.wishList);
-  const [viewedPhoto, setViewedPhoto] = useState(0);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { wishList } = useSelector((state: RootState) => state.wishList)
+  const [viewedPhoto, setViewedPhoto] = useState(0)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const isWished = wishList.includes(product.id);
+  const isWished = wishList.includes(product.id)
 
-  useSetItemFromStorage("wishList", wishList);
+  useSetItemFromStorage('wishList', wishList)
 
   const handleWishList = () => {
     if (isWished) {
-      dispatch(deleteFromWishList(product.id));
-      toast("You have deleted an item from the wish list", {
+      dispatch(deleteFromWishList(product.id))
+      toast('You have deleted an item from the wish list', {
         description: (
           <div className="flex items-center space-x-2">
             <span>
@@ -60,14 +60,14 @@ const ProductItem = ({ product }: { product: Product }) => {
           </div>
         ),
         action: {
-          label: "Undo",
+          label: 'Undo',
           onClick: () => dispatch(addItemToWishList(product.id)),
         },
         closeButton: true,
-      });
+      })
     } else {
-      dispatch(addItemToWishList(product.id));
-      toast("You have added an item to the wish list", {
+      dispatch(addItemToWishList(product.id))
+      toast('You have added an item to the wish list', {
         description: (
           <div className="flex items-center space-x-2">
             <span>
@@ -77,17 +77,17 @@ const ProductItem = ({ product }: { product: Product }) => {
           </div>
         ),
         action: {
-          label: "Undo",
+          label: 'Undo',
           onClick: () => dispatch(deleteFromWishList(product.id)),
         },
         closeButton: true,
-      });
+      })
     }
-  };
+  }
 
   function handleShowProduct() {
-    searchParams.set("product", `${product.id}`);
-    setSearchParams(searchParams);
+    searchParams.set('product', `${product.id}`)
+    setSearchParams(searchParams)
   }
 
   return (
@@ -100,17 +100,17 @@ const ProductItem = ({ product }: { product: Product }) => {
         >
           {product?.ProductImages && product?.ProductImages.length > 1 && (
             <img
-              src={product?.ProductImages.at(viewedPhoto)?.image_url || ""}
-              alt={product?.name + "image"}
-              className="w-full h-full object-cover rounded-xl"
+              src={product?.ProductImages.at(viewedPhoto)?.image_url || ''}
+              alt={product?.name + 'image'}
+              className="h-full w-full rounded-xl object-cover"
             />
           )}
 
           {product?.ProductImages && product?.ProductImages.length === 1 && (
             <img
-              src={product?.ProductImages.at(0)?.image_url || ""}
-              alt={product?.name + "image"}
-              className="w-full h-full object-cover rounded-xl"
+              src={product?.ProductImages.at(0)?.image_url || ''}
+              alt={product?.name + 'image'}
+              className="h-full w-full rounded-xl object-cover"
             />
           )}
         </div>
@@ -144,7 +144,7 @@ const ProductItem = ({ product }: { product: Product }) => {
 
         {product.discount_amount > 0 && (
           <div className="flex gap-1 font-semibold">
-            <span className="line-through text-slate-200">
+            <span className="text-slate-200 line-through">
               {formatCurrency(product?.price_per_unit || 1)}
             </span>
             <span className="bg-red text-red-600">
@@ -171,10 +171,10 @@ const ProductItem = ({ product }: { product: Product }) => {
         </span> */}
       </div>
     </li>
-  );
-};
+  )
+}
 
-export default ProductItem;
+export default ProductItem
 
 //////////////
 

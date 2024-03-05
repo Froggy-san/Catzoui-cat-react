@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react'
 
 interface FormRowProps {
-  className?: string;
-  children?: React.ReactNode;
+  className?: string
+  children?: React.ReactNode
 }
 
 const FormRow = ({ className, children }: FormRowProps) => {
   return (
     <div
-      className={`md:form-row justify-center gap-4 items-center ${className}`}
+      className={`md:form-row items-center justify-center gap-4 ${className}`}
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
-export default FormRow;
+export default FormRow

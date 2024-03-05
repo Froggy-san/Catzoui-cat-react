@@ -1,82 +1,82 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { EmblaOptionsType } from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import { flushSync } from "react-dom";
+import React, { useCallback, useEffect, useState } from 'react'
+import { EmblaOptionsType } from 'embla-carousel'
+import useEmblaCarousel from 'embla-carousel-react'
+import { flushSync } from 'react-dom'
 
-import { formatCurrency } from "@/utils/helper";
-import { useSearchParams } from "react-router-dom";
+import { formatCurrency } from '@/utils/helper'
+import { useSearchParams } from 'react-router-dom'
 
-const TWEEN_FACTOR = 1.2;
+const TWEEN_FACTOR = 1.2
 
 interface RelatedProdcutsProps {
-  ProductImages: { image_url: string | null }[];
+  ProductImages: { image_url: string | null }[]
 
-  average_rating?: number;
-  brand: string; // add a question mark to make it optional
-  category: string;
-  color: string;
-  created_at: string;
-  description: string;
-  discount_amount: number;
-  id: number;
-  name: string;
-  price_per_unit: number;
-  size: string;
-  stock: number;
+  average_rating?: number
+  brand: string // add a question mark to make it optional
+  category: string
+  color: string
+  created_at: string
+  description: string
+  discount_amount: number
+  id: number
+  name: string
+  price_per_unit: number
+  size: string
+  stock: number
 }
 
 type PropType = {
-  slides: number[];
-  handleScrollUp: () => void;
-  options?: EmblaOptionsType;
-  relatedProducts: RelatedProdcutsProps[] | undefined;
-};
+  slides: number[]
+  handleScrollUp: () => void
+  options?: EmblaOptionsType
+  relatedProducts: RelatedProdcutsProps[] | undefined
+}
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, relatedProducts, handleScrollUp } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options);
-  const [tweenValues, setTweenValues] = useState<number[]>([]);
+  const { slides, options, relatedProducts, handleScrollUp } = props
+  const [emblaRef, emblaApi] = useEmblaCarousel(options)
+  const [tweenValues, setTweenValues] = useState<number[]>([])
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()
 
   function handleShowProduct(value: number) {
-    searchParams.set("product", `${value}`);
-    setSearchParams(searchParams);
+    searchParams.set('product', `${value}`)
+    setSearchParams(searchParams)
     // navigate(`/?product=${value}`);
   }
 
   const onScroll = useCallback(() => {
-    if (!emblaApi) return;
+    if (!emblaApi) return
 
-    const engine = emblaApi.internalEngine();
-    const scrollProgress = emblaApi.scrollProgress();
+    const engine = emblaApi.internalEngine()
+    const scrollProgress = emblaApi.scrollProgress()
 
     const styles = emblaApi.scrollSnapList().map((scrollSnap, index) => {
-      let diffToTarget = scrollSnap - scrollProgress;
+      let diffToTarget = scrollSnap - scrollProgress
 
       if (engine.options.loop) {
         engine.slideLooper.loopPoints.forEach((loopItem) => {
-          const target = loopItem.target();
+          const target = loopItem.target()
           if (index === loopItem.index && target !== 0) {
-            const sign = Math.sign(target);
-            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
-            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+            const sign = Math.sign(target)
+            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress)
+            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress)
           }
-        });
+        })
       }
-      return diffToTarget * (-1 / TWEEN_FACTOR) * 100;
-    });
-    setTweenValues(styles);
-  }, [emblaApi, setTweenValues]);
+      return diffToTarget * (-1 / TWEEN_FACTOR) * 100
+    })
+    setTweenValues(styles)
+  }, [emblaApi, setTweenValues])
 
   useEffect(() => {
-    if (!emblaApi) return;
-    onScroll();
-    emblaApi.on("scroll", () => {
-      flushSync(() => onScroll());
-    });
-    emblaApi.on("reInit", onScroll);
-  }, [emblaApi, onScroll]);
+    if (!emblaApi) return
+    onScroll()
+    emblaApi.on('scroll', () => {
+      flushSync(() => onScroll())
+    })
+    emblaApi.on('reInit', onScroll)
+  }, [emblaApi, onScroll])
 
   return (
     <div className="embla">
@@ -97,31 +97,31 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                   >
                     <div
                       onClick={() => {
-                        handleScrollUp();
-                        handleShowProduct(product.id);
+                        handleScrollUp()
+                        handleShowProduct(product.id)
                       }}
                     >
                       <img
                         className="embla__slide__img embla__parallax__img rounded-lg"
-                        src={product?.ProductImages[0]?.image_url || ""}
-                        alt={product?.name || ""}
+                        src={product?.ProductImages[0]?.image_url || ''}
+                        alt={product?.name || ''}
                       />
                       {/* <p className="absolute top-0 left-0 w-[150px] h-12 bg-oldCatBg/50 font-semibold backdrop-blur-xl flex items-center  rounded-xl px-4 break-keep truncate overflow-ellipsis">
                         { product.name} 
                       </p> */}
 
-                      <div className="flex gap-3 absolute  bottom-3 right-3 font-semibold px-3 py-5 rounded-full bg-oldCatBg">
+                      <div className="absolute bottom-3 right-3  flex gap-3 rounded-full bg-oldCatBg px-3 py-5 font-semibold">
                         <span
                           className={`${
                             product.discount_amount > 0 &&
-                            "line-through text-slate-300"
+                            'text-slate-300 line-through'
                           } `}
                         >
                           {formatCurrency(product.price_per_unit)}
-                        </span>{" "}
+                        </span>{' '}
                         <span className="text-red-600">
                           {product.discount_amount === 0
-                            ? ""
+                            ? ''
                             : formatCurrency(product.discount_amount)}
                         </span>
                       </div>
@@ -133,7 +133,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EmblaCarousel;
+export default EmblaCarousel

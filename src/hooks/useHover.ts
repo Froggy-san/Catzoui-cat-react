@@ -1,33 +1,33 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react'
 
 function useHover() {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState(false)
 
-  const ref = useRef<HTMLSpanElement>(null);
+  const ref = useRef<HTMLSpanElement>(null)
 
-  const handleMouseEnter = () => setHover(true);
-  const handleMouseLeave = () => setHover(false);
+  const handleMouseEnter = () => setHover(true)
+  const handleMouseLeave = () => setHover(false)
 
   useEffect(
     () => {
-      const node = ref.current;
+      const node = ref.current
       if (node) {
-        node.addEventListener("mouseenter", handleMouseEnter);
-        node.addEventListener("mouseleave", handleMouseLeave);
+        node.addEventListener('mouseenter', handleMouseEnter)
+        node.addEventListener('mouseleave', handleMouseLeave)
 
         return () => {
-          node.removeEventListener("mouseenter", handleMouseEnter);
-          node.removeEventListener("mouseleave", handleMouseLeave);
-        };
+          node.removeEventListener('mouseenter', handleMouseEnter)
+          node.removeEventListener('mouseleave', handleMouseLeave)
+        }
       }
     },
     [ref.current] // Recall only if ref changes , am typing this, removing the ref.current will not effect anything to know more see what bing wrote down there.
-  );
+  )
 
-  return [ref, hover];
+  return [ref, hover]
 }
 
-export default useHover;
+export default useHover
 
 {
   /*

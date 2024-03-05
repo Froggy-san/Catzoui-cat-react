@@ -1,6 +1,6 @@
-import { signup } from "@/services/apiAuth";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "sonner";
+import { signup } from '@/services/apiAuth'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'sonner'
 
 export default function useSignUp() {
   const {
@@ -10,12 +10,12 @@ export default function useSignUp() {
   } = useMutation({
     mutationFn: signup,
     onSuccess: () => {
-      toast(`Account has been created successfully`);
+      toast(`Account has been created successfully`)
     },
     onError: (err) => {
-      toast(err.message + "!");
+      toast(err.message + '!')
     },
-  });
+  })
 
-  return { isSigningUp, signUpUser, signUpData };
+  return { isSigningUp, signUpUser, signUpData }
 }
