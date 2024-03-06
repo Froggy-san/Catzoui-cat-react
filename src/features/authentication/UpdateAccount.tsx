@@ -70,18 +70,6 @@ const UpdateAccount = () => {
     building_num,
     avatar,
   }: z.infer<typeof formSchema>) {
-    console.log(
-      email,
-      //   password,
-      username,
-      phone,
-      city,
-      street,
-      building_num,
-      avatar,
-      'updated here ?1 ??!!!!'
-    )
-
     updateUserData({
       username,
       phone,

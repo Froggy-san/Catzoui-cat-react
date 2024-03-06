@@ -19,7 +19,6 @@ export async function getProducts({
     .select('* , ProductImages(id, product_id, image_url)', { count: 'exact' })
 
   //Filter
-  console.log(filterValue, 'filterValue from api !!')
 
   /*2. add the .eq to the query variable, so it will look like this (supabase
      .from("Products")
@@ -43,7 +42,6 @@ export async function getProducts({
   if (filterRange && filterRange !== 'no-range') {
     const range = filterRange.split(',')
 
-    console.log(range, 'RANGE FROM API')
     query = query
       .gte('price_per_unit', range.at(0))
       .lte('price_per_unit', range.at(1))
@@ -69,7 +67,6 @@ export async function getProducts({
   }
   const { data, error, count } = await query
 
-  console.log(count, 'COUNT HERE !!!')
   if (error) {
     console.error(error)
     throw new Error(`Booking couldn't be loaded`)
@@ -191,9 +188,6 @@ export async function updateProduct({
   } else {
     imagePaths = ''
   }
-  console.log(imageNames, imagePaths, 'images from api ?? >')
-
-  console.log(updatedProduct, 'logs from api it slef is it working ??? !!')
 
   // 3. update product/
 
@@ -208,7 +202,6 @@ export async function updateProduct({
     throw new Error(`truble updating,${error}`)
   }
 
-  console.log(data, 'data UPDATEDDD>D>')
   // if imagesName === string, that is us saying if there is no images to upload, so return the data.
   if (typeof imageNames === 'string') return data
 
@@ -237,23 +230,6 @@ export async function updateProduct({
   // 6. upload image files to the storage and removing the past images files related to the updated product.
 
   if (Array.isArray(images) && imageNames) {
-    // Add image files to the storage.
-    // images.forEach(async (imageFile, i) => {
-    //   const { error } = await supabase.storage
-    //     .from("catzoui")
-    //     .upload(imageNames[i], imageFile);
-    //   if (error) throw new Error(`Truble uploading files`);
-
-    //   // Delete images files related to product.
-    //   if (!error && imagesToRemove) {
-    //     const { error: deleteStorageImageError } = await supabase.storage
-    //       .from("catzoui")
-    //       .remove([...(imagesToRemove as string[])]);
-    //     if (deleteStorageImageError)
-    //       throw new Error(`had truble deleting images from storage!`);
-    //   }
-    // });
-
     for (let i = 0; i < images.length; i++) {
       const imageFile = images[i]
       const { error } = await supabase.storage
@@ -274,22 +250,6 @@ export async function updateProduct({
 
   return data
 }
-
-// const productObj = {
-//   ProductImages: [],
-//   average_rating: 0,
-//   brand: "",
-//   category: "",
-//   color: "",
-//   created_at: "",
-//   description: "",
-//   discount_amount: 0,
-//   id: 0,
-//   name: "",
-//   price_per_unit: 0,
-//   size: "",
-//   stock: 0,
-// };
 
 export async function getProductById(id: string) {
   const { data, error } = await supabase
@@ -323,7 +283,7 @@ export async function getProductByCategory(category: string, id: string) {
 export async function getAllCategories() {
   const { data, error } = await supabase.from('Products').select('category')
 
-  if (error) console.error(`had truble fetching all categories`)
+  if (error) console.error(`had truble fetching  categories`)
 
   return data
 }
@@ -337,8 +297,6 @@ export async function getAllBrands() {
 }
 
 export async function getWishList(list: number[] | []) {
-  console.log(list, 'LIST FORM API !!!!!!!!!!!!!!!!!!!!')
-
   if (!list.length) return []
 
   // const wishList = list.map(async (item) => {
@@ -398,7 +356,6 @@ export async function deleteProdcut(id: string) {
 }
 
 export async function deleteProdcutImages(images: (string | undefined)[]) {
-  console.log([...images], 'images here !!!! >>>>> From api')
   const { error: deleteStorageImageError } = await supabase.storage
     .from('catzoui')
     .remove([...(images as string[])])

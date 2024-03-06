@@ -14,7 +14,6 @@ const NavLinks = () => {
     return [...new Set(allCategories?.map((pro) => pro.category))]
   }, [allCategories])
 
-  console.log(allCat, 'asdalsdaldallas')
   function handleFilterByCategory(field: string, value: string) {
     searchParams.set(field, value)
     setSearchParams(searchParams)

@@ -1,10 +1,11 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { scrollToTheTop } from '@/utils/helper'
+import { RiJavascriptFill } from 'react-icons/ri'
+import { LiaGithub } from 'react-icons/lia'
 
 const Footer = () => {
   return (
-    <footer className=" relative mt-80 h-[70dvh] rounded-tl-2xl rounded-tr-2xl border-t-2 border-slate-700 bg-[#161616]">
+    <footer className=" relative mt-80 h-fit rounded-tl-2xl rounded-tr-2xl border-t-2 border-slate-700 bg-[#161616] pb-5 sm:h-[70dvh]">
       <Link
         onClick={scrollToTheTop}
         to="/"
@@ -14,7 +15,7 @@ const Footer = () => {
         <img src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png" />
       </Link>
 
-      <div className="mt-36 flex flex-col flex-wrap justify-center space-y-10  pl-10 text-slate-200 xs:flex-row xs:space-x-10 xs:space-y-0 xs:pl-0">
+      <div className="mt-36 flex flex-col flex-wrap justify-center gap-x-9   space-y-10 pl-10 text-slate-200 xs:flex-row xs:space-x-10 xs:space-y-0 xs:pl-0">
         <div className="flex flex-col gap-3">
           <h1 className=" text-orange-400">About us</h1>
           <Link
@@ -57,7 +58,60 @@ const Footer = () => {
             Your Wish list
           </Link>
         </div>
+        <div className="flex flex-col gap-2">
+          <div className="  flex   gap-2 text-slate-200">
+            <RiJavascriptFill
+              className="text-orange-400 transition-colors"
+              size={20}
+            />{' '}
+            <a
+              className="hover:text-orange-200"
+              href=" https://froggy-san.github.io/Catzoui-cats/build/index.html#"
+              target="_blank"
+            >
+              A JavaScript clone/clonish of the same website.
+            </a>
+          </div>
+          <div className="  flex   gap-2  text-slate-200">
+            <LiaGithub
+              className="text-orange-400 transition-colors"
+              size={20}
+            />{' '}
+            <a
+              className="hover:text-orange-200"
+              href="https://github.com/Froggy-san/Catzoui-cat-react"
+              target="_blank"
+            >
+              Github repo
+            </a>
+          </div>
+        </div>
       </div>
+      {/* <div className=" mx-auto mt-12 flex w-[97%] flex-col gap-3 md:w-[500px]">
+        <div className="  flex   gap-2 px-3 text-slate-200">
+          <RiJavascriptFill
+            className="text-orange-400 transition-colors"
+            size={20}
+          />{' '}
+          <a
+            className="hover:text-orange-200"
+            href=" https://froggy-san.github.io/Catzoui-cats/build/index.html#"
+            target="_blank"
+          >
+            A JavaScript clone/clonish of the same website.
+          </a>
+        </div>
+        <div className="  flex   gap-2 px-3 text-slate-200">
+          <LiaGithub className="text-orange-400 transition-colors" size={20} />{' '}
+          <a
+            className="hover:text-orange-200"
+            href="https://github.com/Froggy-san/Catzoui-cat-react"
+            target="_blank"
+          >
+            Github repo
+          </a>
+        </div>
+      </div> */}
     </footer>
   )
 }

@@ -21,24 +21,6 @@ export async function signup({
   building_num,
   avatar,
 }: signUpProps) {
-  //   console.log(
-  //     email,
-  //     password,
-  //     street,
-  //     city,
-  //     building_num,
-  //     phone,
-  //     username,
-  //     avatar,
-  //     "data from the api !!>>>"
-  //   );
-
-  //   const fileName = `avater-${data.user.id}-${Math.random()}`;
-
-  //   const { error: storageError } = await supabase.storage
-  //     .from("avaters")
-  //     .upload(fileName, avatar); // just watch one of the videos where he uploads images, like video 24 7mins .
-
   let imageName
   let imagePath
   if (avatar.length > 0) {
@@ -49,8 +31,6 @@ export async function signup({
     imageName = ''
     imagePath = ''
   }
-
-  console.log(imagePath, 'imagepath here !!')
 
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -69,7 +49,6 @@ export async function signup({
     },
   })
 
-  console.log(data, 'data from signup!!!>>>')
   if (error) throw error
 
   if (!error && imageName !== '') {
@@ -108,7 +87,6 @@ export async function getCurrentUser() {
   if (!session.session) return null
 
   const { data, error } = await supabase.auth.getUser()
-  console.log(data)
 
   if (error) throw new Error(error.message)
 
@@ -141,18 +119,6 @@ export async function updateUser({
   building_num,
   avatar,
 }: updateUser) {
-  console.log(
-    username,
-    street,
-    imageToRemove,
-    phone,
-    city,
-    building_num,
-    imageToRemove,
-    avatar,
-    'DATA RECEIVED BY THE UPDATING API'
-  )
-
   if (password) {
     const { error } = await supabase.auth.updateUser({
       password,
@@ -171,8 +137,6 @@ export async function updateUser({
     imageName = ''
     imagePath = ''
   }
-
-  console.log(imagePath, 'imagepath here !!')
 
   const { data, error } = await supabase.auth.updateUser({
     data: { username, street, phone, city, building_num },

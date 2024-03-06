@@ -51,7 +51,7 @@ const Searching = ({ children }: { children: React.ReactNode }) => {
   const { isLoading, seachResults } = useSearchTerm(debouncedValue)
 
   const results = seachResults || []
-  console.log(seachResults, 'Search results here !!!??>>>>')
+
 
   const handleOpen = (e?: MouseEvent) => {
     e?.stopPropagation()
@@ -59,7 +59,7 @@ const Searching = ({ children }: { children: React.ReactNode }) => {
   }
 
   const close = () => {
-    // console.log("is the clsoe function working ?? !!");
+
     // setSearchTerm("");
     setIsOpen(false)
   }

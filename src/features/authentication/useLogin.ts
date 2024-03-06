@@ -12,14 +12,12 @@ export default function useLogin() {
     mutationFn: login,
 
     onSuccess: (data) => {
-      console.log(data, 'data from login <<<<<<<<<<<')
       queryClient.setQueryData(['user'], data.user)
 
       navigate('/', { replace: true })
     },
 
     onError: (err) => {
-      console.log('error', err)
       toast(err.message)
     },
   })

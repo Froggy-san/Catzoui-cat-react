@@ -21,10 +21,10 @@ const Operations = () => {
           className=" flex flex-wrap gap-1"
           filterFiled="range"
           options={[
-            { value: '0,50', label: '$0-$50' },
-            { value: '50,200', label: '$50-$200' },
-            { value: '200,600', label: '$200-$600' },
-            { value: '600,999999', label: '$600-above' },
+            { value: '0,50', label: 'EGP0 - EGP50' },
+            { value: '50,200', label: 'EGP50 - EGP200' },
+            { value: '200,600', label: 'EGP200 - EGP600' },
+            { value: '600,999999', label: 'EGP600-above' },
           ]}
         />
         <FitlerOperations

@@ -22,7 +22,10 @@ const CarouselComp = React.forwardRef(function (
   )
 
   return (
-    <div ref={ref} className="container mt-5 px-0  transition-all duration-300">
+    <div
+      ref={ref}
+      className="container mt-5 select-none  px-0 transition-all duration-300"
+    >
       <Carousel
         opts={{
           align: 'start',

@@ -43,7 +43,7 @@ const Slider = forwardRef(function NavLinkSlider(
     // setSearchParams(searchParams);
     navigate(`/?filter=${value}`)
   }
-  // console.log(user?.user_metadata, "user here !!");
+
   return (
     // Add the ref attribute to the div element that wraps the NavLinksSlider component
     <div

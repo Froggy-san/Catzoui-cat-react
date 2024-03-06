@@ -7,12 +7,10 @@ import { getCart } from '@/features/cart/cartSlice'
 const CartList = () => {
   const cart = useSelector(getCart)
 
-  console.log(cart, 'cart from cart <<')
   useEffect(() => {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
-  console.log(cart)
   return (
     <div className="mx-auto w-[97%] space-y-6 divide-y-2 rounded-xl border border-slate-300 p-5">
       {!cart.length && <EmptyCart />}

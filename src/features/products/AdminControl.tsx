@@ -39,8 +39,8 @@ const AdminControl = ({ productId, images }: AdminControlProps) => {
     [productId, deleteProduct, navigate, dispatch, images, deleteStorage]
   )
   return (
-    <div className="mt-16 flex items-center gap-3 rounded-xl px-4 py-6 tracking-wider">
-      <h1 className="text-xl font-semibold">Edit/Delete prodcut</h1>
+    <div className="mt-16 flex flex-col items-center gap-3 rounded-xl px-4 py-6 tracking-wider sm:flex-row">
+      <h1 className="text-xl font-semibold">Edit/Delete prodcut:</h1>
       <div className="my-4 space-x-3">
         <Button
           onClick={() => navigate(`edit-product/${productId}`)}

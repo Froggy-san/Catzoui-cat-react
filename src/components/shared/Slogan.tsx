@@ -2,7 +2,7 @@ import React from 'react'
 
 const Slogan = () => {
   return (
-    <div className=" absolute bottom-[100px] left-1/2 min-w-[95%]    max-w-[450px] translate-x-[-50%] break-words  sm:left-16 sm:min-w-[320px] sm:translate-x-0">
+    <div className=" absolute bottom-[100px] left-1/2 min-w-[95%] max-w-[450px]   translate-x-[-50%] select-none break-words  sm:left-16 sm:min-w-[320px] sm:translate-x-0">
       <div className=" relative rounded-lg bg-gray-50/50 px-3 py-2 backdrop-blur-xl">
         <img
           src="https://tmmozdpzjvijerozmloy.supabase.co/storage/v1/object/public/category/logo-2.png"

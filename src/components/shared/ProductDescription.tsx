@@ -25,7 +25,7 @@ const ProductDescription = ({
     isBigEnough && !isOpen
       ? description?.slice(0, LENGHT_OF_STRING) + '...'
       : description
-  console.log(description?.slice(0, LENGHT_OF_STRING))
+
   return (
     <div className=" relative">
       <p className={`mt-5 break-words text-gray-400`}>{desc}</p>

@@ -38,7 +38,7 @@ const CarouselCat = () => {
         onMouseLeave={plugin.current.reset}
         className="w-full "
       >
-        <CarouselContent className="-ml-1  pl-2 pr-3 sm:pr-8 md:pr-0">
+        <CarouselContent className="-ml-1  select-none pl-2 pr-3 sm:pr-8 md:pr-0">
           <CarouselItem className="pl-1 sm:basis-1/2    lg:basis-1/3   xl:basis-1/4">
             <Link to="c" smooth={true} duration={SCROLL_DURATION}>
               <div

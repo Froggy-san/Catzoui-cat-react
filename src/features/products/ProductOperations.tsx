@@ -250,7 +250,7 @@ const ProductOperations = ({
         ) : (
           <Button
             disabled={isDeleting}
-            className="mr-8 flex-1 gap-3"
+            className=" flex-1 gap-3 md:mr-8  xl:mr-1"
             onClick={handleAddToCart}
           >
             <RiShoppingBag3Line size={20} /> Add to cart
@@ -287,7 +287,7 @@ const ProductOperations = ({
         />
       </div>
 
-      <div className="mt-3 flex items-center  justify-between   font-semibold">
+      <div className="mt-3 flex items-center justify-between  text-xs   font-semibold   sm:text-base">
         <div className="flex items-center space-x-3 ">
           {' '}
           <CiDeliveryTruck size={20} />

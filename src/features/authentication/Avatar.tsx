@@ -16,13 +16,8 @@ const Avatar = ({ fieldChange, mediaUrl }: AvatarProps) => {
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {
-      console.log(acceptedFiles, 'accepted files here !!')
-      console.log(acceptedFiles[0], 'accepted files[0] here !!')
+  
 
-      console.log(
-        URL.createObjectURL(acceptedFiles[0]),
-        'accepted files as an object here !!'
-      ) // blob:http://localhost:5173/a2ccf787-a3b6-4677-be12-581aed9c4033 accepted files as an object here !!
 
       // Do something with the files
       setFile(acceptedFiles)

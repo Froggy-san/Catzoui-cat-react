@@ -87,8 +87,7 @@ const cartSlice = createSlice({
     },
     increaseQuantity(state, action) {
       const item = state.cart.find((item) => item.itemId === action.payload)
-      // console.log([...state.cart], "cart from the slice <<");
-      console.log(item, 'item from slice <<<<')
+
       if (item && item.stock) {
         if (item.quantity === item.stock) return
         item.quantity++
@@ -104,7 +103,7 @@ const cartSlice = createSlice({
 
     decreaseQuantity(state, action) {
       const item = state.cart.find((item) => item.itemId === action.payload)
-      console.log(item, '<<<<<<<<< item here >>>>>>>')
+  
       if (item && item.stock) {
         if (item.quantity === 0) return
         item.quantity--
@@ -163,4 +162,4 @@ export const getTotalBeforeDiscount = (state: RootState) =>
 
 export const getTotalAfterDiscount = (state: RootState) =>
   state.cart.cart.reduce((sum, curEl) => sum + curEl.totalPriceAfterDiscount, 0)
-console.log(getCart, 'getCart here ??>      >>>')
+

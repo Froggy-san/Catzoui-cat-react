@@ -1,5 +1,12 @@
+import Footer from '@/components/shared/Footer'
+
 const PageNotFound = () => {
-  return <div>PageNotFound</div>
+  return (
+    <div>
+      PageNotFound
+      <Footer />
+    </div>
+  )
 }
 
 export default PageNotFound

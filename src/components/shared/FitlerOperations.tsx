@@ -29,7 +29,6 @@ const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
       : searchParams.get(filterFiled) || ''
 
   console.log(currentFilter)
-
   // check if the filed === filter or not becasue the filter option can be toggled on but not off when clicked on them again. as to the other options they can be toggled on and off.
   function handleClick(value: string) {
     if (filterFiled !== 'filter' && currentFilter === value) {
@@ -61,9 +60,13 @@ const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
 
       {filterFiled === 'sortBy' && <OprationButtonTypes type="sort" />}
       {options?.map((option) => (
-        <Link to="c" smooth={true} duration={SCROLL_DURATION}>
+        <Link
+          to={currentFilter === option.value ? '' : 'c'}
+          smooth={true}
+          duration={SCROLL_DURATION}
+          key={option.value}
+        >
           <Button
-            key={option.value}
             size="sm"
             onClick={() => {
               handleClick(option.value || '')

@@ -69,8 +69,7 @@ const Size = ({
           </div>
           <div className="flex flex-wrap gap-3">
             {sizes.map((size) => {
-              console.log(size, 'size here !! ????? ASAD')
-              console.log(chosenSize, 'size here !! ????? ASAD')
+           
               return (
                 <Button
                   key={size}

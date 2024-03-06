@@ -7,7 +7,7 @@ const EditProduct = () => {
 
   const { product, isLoading } = useGetProductById(productId || '')
 
-  console.log(product, 'product from edut<<')
+  
 
   if (!productId) return <p>Loading...</p>
 

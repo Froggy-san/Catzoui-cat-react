@@ -273,7 +273,7 @@ const ProductDetails = () => {
                   <h1 className="text-xl">No related products...</h1>
                 )}
               </div>
-              {user?.user_metadata.privileges === 'admin' ? (
+              {user?.user_metadata.privileges ? (
                 <AdminControl images={images} productId={productId} />
               ) : null}
             </div>
