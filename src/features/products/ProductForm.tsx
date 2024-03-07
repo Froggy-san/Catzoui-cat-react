@@ -467,7 +467,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                 type="reset"
                 onClick={() => {
                   form.reset()
-                  navigate(`/?product=${id}`)
+                  if (product) navigate(`/?product=${id}`)
                 }}
               >
                 Cancel
