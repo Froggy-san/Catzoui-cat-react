@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MdOutlineRemoveShoppingCart } from 'react-icons/md'
 import { toast } from 'sonner'
 import { formatCurrency } from '@/utils/helper'
+import { Link } from 'react-router-dom'
 const CartSummary = () => {
   const [isOpen, setIsOpen] = useState(false)
   const cart = useSelector(getCart)
@@ -89,7 +90,9 @@ const CartSummary = () => {
             >
               Delete ({totalQuantity})
             </Button>
-            <Button>Proceed ({totalQuantity})</Button>
+            <Link to="/order/1">
+              <Button>Proceed ({totalQuantity})</Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ import SignupForm from './features/authentication/SignupForm'
 import AddProductPage from './features/products/AddProductPage'
 import EditProduct from './features/products/EditProduct'
 import { ProtectedRoute } from './components/shared/ProtectedRoute'
-import LoadingScreen from './components/shared/componants not used/LoadingScreen'
+import LoadingScreen from './components/shared/LoadingScreen'
 
 import { Toaster } from '@/components/ui/sonner'
 
@@ -55,7 +55,7 @@ const App = () => {
               <Route path="edit-product/:productId" element={<EditProduct />} />
               <Route path="cart" element={<Cart />} />
 
-              <Route path="orders/:orderId" element={<Orders />} />
+              <Route path="order/:orderId" element={<Orders />} />
 
               <Route path="account" element={<Account />} />
 

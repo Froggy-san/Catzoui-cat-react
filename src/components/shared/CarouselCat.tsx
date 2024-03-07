@@ -27,7 +27,9 @@ const CarouselCat = () => {
   )
   return (
     <div className="container my-20 flex flex-col items-center justify-center  px-0">
-      {' '}
+      <h1 className="my-12 w-full self-start pl-5 text-5xl font-semibold text-secondary-foreground md:text-7xl">
+        Categories
+      </h1>{' '}
       <Carousel
         opts={{
           align: 'start',
