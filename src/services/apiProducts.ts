@@ -199,7 +199,7 @@ export async function updateProduct({
 
   if (error) {
     console.error(error)
-    throw new Error(`truble updating,${error}`)
+    throw error
   }
 
   // if imagesName === string, that is us saying if there is no images to upload, so return the data.

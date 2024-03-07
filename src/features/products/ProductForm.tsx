@@ -315,7 +315,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormControl>
                       <Input
                         disabled={isCreating || isUpdating}
-                        placeholder="m,xl,120cm,11m"
+                        placeholder="m,xl,120cm,"
                         {...field}
                       />
                     </FormControl>
