@@ -315,7 +315,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormControl>
                       <Input
                         disabled={isCreating || isUpdating}
-                        placeholder="xl,or 120cm"
+                        placeholder="m,xl,120cm,11m"
                         {...field}
                       />
                     </FormControl>
@@ -336,7 +336,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormControl>
                       <Input
                         disabled={isCreating || isUpdating}
-                        placeholder="(red,green)"
+                        placeholder="red,green,#ffff,blue"
                         {...field}
                       />
                     </FormControl>
@@ -367,7 +367,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     </FormControl>
 
                     <FormDescription className="font-semibold text-green-500">
-                      Colors available in stock.
+                      Amount available in stock.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
