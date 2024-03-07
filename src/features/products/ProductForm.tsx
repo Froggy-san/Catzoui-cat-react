@@ -176,7 +176,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
         { newProduct, images },
         {
           onSuccess: () => {
-            navigate('/')
+            navigate(-1)
 
             toast('Product added successfuly!', {
               description: (

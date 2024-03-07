@@ -24,14 +24,13 @@ const AdminControl = ({ productId, images }: AdminControlProps) => {
 
   const handleDeleteProduct = useCallback(
     function () {
+      navigate(-1)
       if (productId)
         deleteProduct(productId, {
           onSuccess: () => {
             toast(`Product with the id of ${productId}`)
             dispatch(deleteAllRelatedItems(+productId))
             dispatch(deleteFromWishList(+productId))
-
-            navigate('/')
           },
         })
       if (images) deleteStorage(images)
