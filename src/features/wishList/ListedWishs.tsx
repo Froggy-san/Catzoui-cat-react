@@ -14,7 +14,11 @@ const ListedWishs = () => {
 
   useSetItemFromStorage('wishList', wishList)
 
-  if (!isLoading && !error && !wishedItems?.length)
+  if (
+    !isLoading &&
+    !error &&
+    !wishedItems?.filter((el) => el !== undefined).length
+  )
     return (
       <div className="flex flex-col items-center justify-center gap-2 ">
         <Empty message="There are not items in the wish list...." />{' '}
