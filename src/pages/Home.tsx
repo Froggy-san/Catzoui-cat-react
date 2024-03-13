@@ -7,6 +7,7 @@ import ProductDetails from '@/features/products/ProductDetails'
 import GoToTheTop from '@/components/shared/GoToTheTop'
 import { useInView } from 'react-intersection-observer'
 import ProductFormButton from '@/components/shared/ProductFormButton'
+
 const Home = () => {
   const { ref, inView } = useInView()
 

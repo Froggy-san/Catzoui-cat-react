@@ -17,36 +17,19 @@ import {
 
 import { Input } from '@/components/ui/input'
 import Avatar from './Avatar'
-import { validateEgyptianPhoneNumber } from '@/utils/helper'
-import FormRow from '@/components/shared/FormRow'
 
-const formSchema = z
-  .object({
-    email: z.string().min(10).max(55),
-    username: z.string().min(2).max(50),
-    city: z.string().min(4),
-    street: z.string().min(5).max(55),
-    building_num: z.string().min(1),
-    phone: z.string().min(11).max(11),
-    avatar: z.custom<File[]>(),
-  })
-  .refine(
-    (data) => {
-      return validateEgyptianPhoneNumber(data.phone)
-    },
-    {
-      message: `Phone number must match the patterns of Egyptian phone numbers`,
-      path: ['phone'],
-    }
-  )
+import FormRow from '@/components/shared/FormRow'
+import { updateUserSchema } from '@/utils/formSchema'
+import { useRef } from 'react'
+import _ from 'lodash'
 
 const UpdateAccount = () => {
   const { user } = useUser()
   const { updateUserData, isUpdating } = useUpdateUser()
   //   const navigate = useNavigate();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof updateUserSchema>>({
+    resolver: zodResolver(updateUserSchema),
     defaultValues: {
       email: user?.email || '',
       //   password: "",
@@ -60,25 +43,34 @@ const UpdateAccount = () => {
     },
   })
 
-  function onSubmit({
-    email,
-    // password,
-    username,
-    phone,
-    city,
-    street,
-    building_num,
-    avatar,
-  }: z.infer<typeof formSchema>) {
-    updateUserData({
-      username,
-      phone,
-      city,
-      street,
-      building_num,
-      imageToRemove: user?.user_metadata.avater.split('avatar/')[1],
-      avatar: !avatar.length ? '' : avatar,
-    })
+  // the default values, we get these values so we don't enable the user to sumbit the form without changing any data.
+  const prevValues = useRef(form.getValues())
+
+  // this is a function which checks if there has been any changes to the form or not.
+  const hasChanges = () => {
+    const currentValues = form.getValues()
+    return !_.isEqual(currentValues, prevValues.current) // Use lodash for deep comparison
+  }
+  // console.log(prevValues, 'prevValues')
+  function onSubmit(formData: z.infer<typeof updateUserSchema>) {
+    try {
+      // if there hasn't been changes , return.
+      if (!hasChanges()) return
+
+      // update user
+      updateUserData({
+        username: formData.username,
+        phone: formData.phone,
+        city: formData.city,
+        street: formData.street,
+        building_num: formData.building_num,
+        imageToRemove: user?.user_metadata.avater.split('avatar/')[1],
+        avatar: !formData.avatar.length ? '' : formData.avatar,
+      })
+    } finally {
+      // here we are restting the value of the an object within a ref object , so we are not restting the ref it self, you can't do so anyways if you even tried to, the form.getValues here inside the form will return the values it self, unlike the from.getValues() we called inside the ref which returns an object that has the current object which has the current value, if you are finding it hard to understand what is written here, console.log(prevValues) and console.log(form.getValues).
+      prevValues.current = form.getValues()
+    }
   }
 
   return (

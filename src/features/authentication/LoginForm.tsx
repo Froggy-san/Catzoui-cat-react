@@ -38,6 +38,7 @@ const LoginForm = () => {
 
   // 2. Define a submit handler.
   function onSubmit({ email, password }: z.infer<typeof formSchema>) {
+    console.log(email, password)
     loginUser({ email, password })
   }
 
