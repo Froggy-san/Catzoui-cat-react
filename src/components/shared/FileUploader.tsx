@@ -8,9 +8,14 @@ import { Button } from '../ui/button'
 type FileUploaderProps = {
   fieldChange: (FILES: File[] | (string | null)[]) => void
   mediaUrl?: (string | null)[] | undefined
+  disabled: boolean
 }
 
-const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
+const FileUploader = ({
+  fieldChange,
+  mediaUrl,
+  disabled,
+}: FileUploaderProps) => {
   const [file, setFile] = useState<File[] | (string | null)[]>([])
 
   const [fileUrls, setFileUrls] = useState<(string | null)[] | []>(
@@ -47,12 +52,18 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
   return (
     <div
       {...getRootProps()}
-      className="flex h-80 cursor-pointer flex-col    flex-wrap items-center justify-center rounded-xl bg-slate-100 lg:h-[500px] "
+      className={`flex h-80 cursor-pointer flex-col    flex-wrap items-center justify-center rounded-xl bg-slate-100 lg:h-[500px] ${disabled ? 'cursor-not-allowed' : ''}`}
     >
-      <input {...getInputProps()} className="cursor-pointer" />
+      <input
+        {...getInputProps()}
+        className="cursor-pointer"
+        disabled={disabled}
+      />
 
       {fileUrls.length ? (
-        <div className="flex h-full w-full flex-col">
+        <div
+          className={`flex h-full w-full flex-col  ${disabled ? 'cursor-not-allowed' : ''}`}
+        >
           <div className="flex h-full  w-full flex-wrap justify-center   gap-5 overflow-y-auto p-4">
             {fileUrls.map((image, i) => (
               <div key={i} className={`w-[250px ]    h-full rounded-lg`}>
@@ -72,7 +83,9 @@ const FileUploader = ({ fieldChange, mediaUrl }: FileUploaderProps) => {
           </p>
         </div>
       ) : (
-        <div className=" flex w-full flex-col items-center justify-center rounded-[24px] object-cover object-top text-slate-500">
+        <div
+          className={`flex w-full flex-col items-center justify-center rounded-[24px] object-cover object-top text-slate-500 ${disabled ? 'cursor-not-allowed' : ''}`}
+        >
           <BsUpload size={50} />
           <h3 className="mt-4 font-semibold">Drag photo here</h3>
           <p>SVG, PNG, JPG</p>

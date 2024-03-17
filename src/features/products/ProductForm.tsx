@@ -59,6 +59,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
     },
   })
 
+  console.log(form.getValues(), 'form values')
   // 2. Define a submit handler.
   function onSubmit({
     name,
@@ -178,6 +179,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormLabel>Product name</FormLabel>
                     <FormControl>
                       <Input
+                        type="text"
                         disabled={isCreating || isUpdating}
                         placeholder="name"
                         {...field}
@@ -199,6 +201,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormLabel>Category name</FormLabel>
                     <FormControl>
                       <Input
+                        type="text"
                         disabled={isCreating || isUpdating}
                         placeholder="fashion"
                         {...field}
@@ -222,6 +225,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormLabel>Price per unit</FormLabel>
                     <FormControl>
                       <Input
+                        type="number"
                         disabled={isCreating || isUpdating}
                         placeholder="$11"
                         min={0}
@@ -269,6 +273,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormLabel>Product size</FormLabel>
                     <FormControl>
                       <Input
+                        type="text"
                         disabled={isCreating || isUpdating}
                         placeholder="m,xl,120cm,"
                         {...field}
@@ -290,6 +295,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                     <FormLabel>Color</FormLabel>
                     <FormControl>
                       <Input
+                        type="text"
                         disabled={isCreating || isUpdating}
                         placeholder="red,green,#ffff,blue"
                         {...field}
@@ -405,6 +411,7 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                   <FormControl>
                     <FileUploader
                       fieldChange={field.onChange}
+                      disabled={isCreating || isUpdating}
                       mediaUrl={images}
                     />
                   </FormControl>

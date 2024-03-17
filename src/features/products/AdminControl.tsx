@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux'
 import { deleteAllRelatedItems } from '../cart/cartSlice'
 import { deleteFromWishList } from '../wishList/wishListSlice'
 
-import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { CiEdit } from 'react-icons/ci'
 import { IoMdTrash } from 'react-icons/io'
@@ -18,22 +17,22 @@ interface AdminControlProps {
 
 const AdminControl = ({ productId, images }: AdminControlProps) => {
   const { deleteProduct, isDeleting } = useDeleteProduct()
-  const { deleteStorage } = useDeleteFromStorage()
+  const { deleteStorage } = useDeleteFromStorage() // for deleting images from the storage.
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleDeleteProduct = useCallback(
     function () {
-      navigate(-1)
-      if (productId)
+      if (productId) {
         deleteProduct(productId, {
           onSuccess: () => {
-            toast(`Product with the id of ${productId}`)
             dispatch(deleteAllRelatedItems(+productId))
             dispatch(deleteFromWishList(+productId))
+            if (images) deleteStorage(images)
+            navigate(-1)
           },
         })
-      if (images) deleteStorage(images)
+      }
     },
     [productId, deleteProduct, navigate, dispatch, images, deleteStorage]
   )

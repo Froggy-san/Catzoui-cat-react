@@ -7,6 +7,7 @@ import { getCart } from '@/features/cart/cartSlice'
 const CartList = () => {
   const cart = useSelector(getCart)
 
+  console.log(cart, 'cart items')
   useEffect(() => {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])

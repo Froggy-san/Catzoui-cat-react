@@ -10,7 +10,9 @@ export default function useDeleteProduct() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] })
       queryClient.invalidateQueries({ queryKey: ['categories'] })
+      toast(`Product has been deleted.`)
     },
+
     onError: (err) => toast(`${err.message}`),
   })
   return { deleteProduct, isDeleting }
