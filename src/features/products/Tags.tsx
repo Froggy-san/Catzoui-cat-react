@@ -17,7 +17,7 @@ const Tags = ({
     <div
       style={{ width: '100%' }}
       onClick={() => showField(true)}
-      className="flex h-10 cursor-pointer   gap-1 rounded-md border border-input bg-background px-3 py-2 text-sm"
+      className="flex h-fit cursor-pointer   flex-wrap gap-1  overscroll-contain rounded-md border border-input bg-background px-3 py-2 text-sm"
     >
       {tags.length
         ? tags
