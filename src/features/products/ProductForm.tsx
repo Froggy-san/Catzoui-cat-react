@@ -26,10 +26,13 @@ import useUpdateProduct from './useUpdateProdcut'
 import { CiEdit } from 'react-icons/ci'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteAllRelatedItems, getCart } from '@/features/cart/cartSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { addProductSchema } from '@/utils/formSchema'
+import Tags from './Tags'
 
 const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
+  const [isColorsVisible, setIsColorsVisible] = useState(false)
+  const [isSizeVisible, setIsSizeVisible] = useState(false)
   const { isCreating, createNewProduct } = useCreateProduct()
   const { update, isUpdating } = useUpdateProduct()
   const cart = useSelector(getCart)
@@ -269,21 +272,42 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                 control={form.control}
                 name="size"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Product size</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        disabled={isCreating || isUpdating}
-                        placeholder="m,xl,120cm,"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className="font-semibold text-green-500">
-                      Put what size is the product.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
+                  <>
+                    {isSizeVisible ? (
+                      <FormItem>
+                        <FormLabel>Product size</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            onBlur={() => {
+                              setIsSizeVisible(false)
+                            }}
+                            autoFocus
+                            type="text"
+                            disabled={isCreating || isUpdating}
+                            placeholder="m,xl,120cm,"
+                          />
+                        </FormControl>
+                        <FormDescription className="font-semibold text-green-500">
+                          Put what size is the product.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    ) : (
+                      <div className=" space-y-2">
+                        <FormLabel>Product size</FormLabel>
+                        <Tags
+                          fieldType="size"
+                          showField={setIsSizeVisible}
+                          fieldChange={field.onChange}
+                          tags={form.getValues().size}
+                        />
+                        <FormDescription className="font-semibold text-green-500">
+                          Put what size is the product.
+                        </FormDescription>
+                      </div>
+                    )}
+                  </>
                 )}
               />
 
@@ -291,21 +315,42 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
                 control={form.control}
                 name="color"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Color</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        disabled={isCreating || isUpdating}
-                        placeholder="red,green,#ffff,blue"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription className="font-semibold text-green-500">
-                      Colors available in this product
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
+                  <>
+                    {isColorsVisible ? (
+                      <FormItem>
+                        <FormLabel>Color</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            autoFocus
+                            onBlur={() => {
+                              setIsColorsVisible(false)
+                            }}
+                            type="text"
+                            disabled={isCreating || isUpdating}
+                            placeholder="red,green,#ffff,blue"
+                          />
+                        </FormControl>
+                        <FormDescription className="font-semibold text-green-500">
+                          Colors available in this product
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    ) : (
+                      <div className=" space-y-2">
+                        <FormLabel>Color</FormLabel>
+                        <Tags
+                          fieldType="colors"
+                          showField={setIsColorsVisible}
+                          fieldChange={field.onChange}
+                          tags={form.getValues().color}
+                        />
+                        <FormDescription className="font-semibold text-green-500">
+                          Colors available in this product
+                        </FormDescription>
+                      </div>
+                    )}
+                  </>
                 )}
               />
             </FormRow>

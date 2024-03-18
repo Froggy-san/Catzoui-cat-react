@@ -8,7 +8,7 @@ interface FormRowProps {
 const FormRow = ({ className, children }: FormRowProps) => {
   return (
     <div
-      className={`md:form-row items-center justify-center gap-4 ${className}`}
+      className={` md:form-row items-center justify-center gap-4 ${className}`}
     >
       {children}
     </div>

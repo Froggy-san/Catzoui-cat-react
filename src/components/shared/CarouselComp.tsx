@@ -38,7 +38,7 @@ const CarouselComp = React.forwardRef(function (
       >
         <CarouselContent>
           <CarouselItem>
-            <div className="h-[65dvh] p-1 md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[85dvh]">
               <Card className=" h-full ">
                 <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
                   <div className="h-full w-full">
@@ -60,7 +60,7 @@ const CarouselComp = React.forwardRef(function (
           </CarouselItem>
 
           <CarouselItem className="">
-            <div className="h-[65dvh] p-1 md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[85dvh]">
               <Card className=" h-full ">
                 <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
                   <div className="h-full w-full">
@@ -82,7 +82,7 @@ const CarouselComp = React.forwardRef(function (
           </CarouselItem>
 
           <CarouselItem className="">
-            <div className="h-[65dvh] p-1 md:h-[75dvh]">
+            <div className="h-[65dvh] p-1 md:h-[85dvh]">
               <Card className=" h-full ">
                 <CardContent className="relative flex aspect-square h-full w-full items-center justify-center p-0  ">
                   <div className="h-full w-full">
