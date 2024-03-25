@@ -42,7 +42,7 @@ const SearchContext = createContext<SearchContextValue>({
 })
 
 const Searching = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
 
   // this is a hook provided by react query , that allows us to set a timeout while searching so we don't make alot of requests to the api.
@@ -52,14 +52,13 @@ const Searching = ({ children }: { children: React.ReactNode }) => {
 
   const results = seachResults || []
 
-
+  console.log(results)
   const handleOpen = (e?: MouseEvent) => {
     e?.stopPropagation()
     setIsOpen((is) => !is)
   }
 
   const close = () => {
-
     // setSearchTerm("");
     setIsOpen(false)
   }

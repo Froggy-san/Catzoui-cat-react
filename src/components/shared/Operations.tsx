@@ -1,11 +1,12 @@
-import FitlerOperations from './FitlerOperations'
+import FilterOperations from './FilterOperations'
+import FitlerOperations from './FilterOperations'
 import { CiDiscount1 } from 'react-icons/ci'
 
 const Operations = () => {
   return (
     <div className="flex flex-col gap-y-20 rounded-3xl md:gap-y-12  xl:flex-row">
       <div className="flex  flex-1 flex-wrap  items-center gap-x-1 gap-y-3">
-        <FitlerOperations
+        <FilterOperations
           className=" flex flex-wrap gap-1"
           filterFiled="filter"
           options={[
@@ -17,7 +18,7 @@ const Operations = () => {
           ]}
         />
 
-        <FitlerOperations
+        <FilterOperations
           className=" flex flex-wrap gap-1"
           filterFiled="range"
           options={[
@@ -27,7 +28,7 @@ const Operations = () => {
             { value: '600,999999', label: 'EGP600-above' },
           ]}
         />
-        <FitlerOperations
+        <FilterOperations
           className=" flex flex-wrap gap-1"
           filterFiled="deals"
           options={[

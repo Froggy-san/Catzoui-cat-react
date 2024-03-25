@@ -128,3 +128,14 @@ export function validateEmail(email: string) {
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(String(email).toLowerCase())
 }
+
+export function removeAllSpacesFrom(str: string, toUpperCase?: boolean) {
+  const updatedStr = str
+    // remove all spaces.
+    .replace(/\s+/g, '')
+    .split(',')
+    .filter((el) => el !== '')
+    .join(',')
+
+  return toUpperCase ? updatedStr.toLocaleUpperCase() : updatedStr
+}

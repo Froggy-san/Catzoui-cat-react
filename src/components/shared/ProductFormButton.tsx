@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const ProductFormButton = () => {
   const { user } = useUser()
-  console.log(user)
+
   return (
     <div>
       {user?.user_metadata.privileges ? (

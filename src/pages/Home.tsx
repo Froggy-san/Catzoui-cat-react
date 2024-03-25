@@ -9,6 +9,7 @@ import { useInView } from 'react-intersection-observer'
 import ProductFormButton from '@/components/shared/ProductFormButton'
 
 const Home = () => {
+
   const { ref, inView } = useInView()
 
   return (

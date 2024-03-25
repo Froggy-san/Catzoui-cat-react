@@ -18,7 +18,7 @@ type FilterProps = {
   options?: Option[]
 }
 
-const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
+const FilterOperations = ({ className, filterFiled, options }: FilterProps) => {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
@@ -28,7 +28,6 @@ const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
       ? searchParams.get(filterFiled) || options?.at(0)?.value
       : searchParams.get(filterFiled) || ''
 
-  console.log(currentFilter)
   // check if the filed === filter or not becasue the filter option can be toggled on but not off when clicked on them again. as to the other options they can be toggled on and off.
   function handleClick(value: string) {
     if (filterFiled !== 'filter' && currentFilter === value) {
@@ -94,4 +93,4 @@ const FitlerOperations = ({ className, filterFiled, options }: FilterProps) => {
   )
 }
 
-export default FitlerOperations
+export default FilterOperations

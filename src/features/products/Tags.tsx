@@ -21,6 +21,7 @@ const Tags = ({
     >
       {tags.length
         ? tags
+            .trim()
             .split(',')
             .filter((el) => el !== '')
             .map((badge, i) => (

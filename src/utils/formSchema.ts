@@ -1,6 +1,5 @@
-import { validateEgyptianPhoneNumber } from './helper'
-
 import { z } from 'zod'
+import { validateEgyptianPhoneNumber } from './helper'
 
 export const updateUserSchema = z
   .object({

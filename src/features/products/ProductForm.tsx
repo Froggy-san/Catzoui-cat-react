@@ -16,7 +16,7 @@ import { useCreateProduct } from './useCreateProduct'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import useScrollIntoView from '@/hooks/useScrollIntoView'
-import { formatText } from '@/utils/helper'
+import { formatText, removeAllSpacesFrom } from '@/utils/helper'
 import FormRow from '@/components/shared/FormRow'
 import { Product } from '@/Types/type'
 import * as z from 'zod'
@@ -39,10 +39,10 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const ref = useScrollIntoView()
-  const images = product?.ProductImages?.map((image) => image.image_url)
+  const images = product?.ProductImages?.map((image) => image.image_url) // get the images for the product you want to update so the user can see what the images look like and if he wants to change it.
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+    localStorage.setItem('cart', JSON.stringify(cart)) // when updating the products we want to delete the products from the cart, becasue it will not update with the updated data. so we are resetting the cart everytime we do so.
   }, [cart])
 
   const form = useForm<z.infer<typeof addProductSchema>>({
@@ -62,7 +62,6 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
     },
   })
 
-  console.log(form.getValues(), 'form values')
   // 2. Define a submit handler.
   function onSubmit({
     name,
@@ -81,11 +80,11 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
       const updatedProduct = {
         name,
         brand: formatText(brand),
-        color: formatText(color),
+        color: removeAllSpacesFrom(color, false),
         description,
         discount_amount: +discount_amount,
         price_per_unit: +price_per_unit,
-        size: size.toLocaleUpperCase(),
+        size: removeAllSpacesFrom(size, true),
         stock: +stock,
         category: formatText(category),
         average_rating: +average_rating,
@@ -121,11 +120,11 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
       const newProduct = {
         name,
         brand: formatText(brand),
-        color: formatText(color),
+        color: removeAllSpacesFrom(color, false),
         description,
         discount_amount: +discount_amount,
         price_per_unit: +price_per_unit,
-        size: size.trim().toLocaleUpperCase(),
+        size: removeAllSpacesFrom(size, true),
         stock: +stock,
         category: formatText(category),
         average_rating: +average_rating,

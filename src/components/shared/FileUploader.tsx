@@ -17,7 +17,6 @@ const FileUploader = ({
   disabled,
 }: FileUploaderProps) => {
   const [file, setFile] = useState<File[] | (string | null)[]>([])
-
   const [fileUrls, setFileUrls] = useState<(string | null)[] | []>(
     mediaUrl || []
   )
@@ -26,6 +25,7 @@ const FileUploader = ({
     if (mediaUrl) {
       setFile(mediaUrl)
       fieldChange(mediaUrl)
+      console.log(mediaUrl)
     }
   }, [])
 

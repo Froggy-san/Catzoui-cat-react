@@ -19,6 +19,7 @@ const CarouselCat = () => {
 
   function handleSetFilter(value: string) {
     searchParams.set('filter', value)
+    searchParams.set('page', '1')
     setSearchParams(searchParams)
   }
 
