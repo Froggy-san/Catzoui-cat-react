@@ -106,6 +106,9 @@ const ProductDetails = () => {
     const newParams = new URLSearchParams(searchParams)
     newParams.delete('product')
 
+    const body = document.querySelector('body')
+    if (body) body.style.backgroundColor = 'white' /// when closing the drawer the background color of the body stays black, thherefore we need to make it white agian after closing the drawer.
+
     // Navigate to the same pathname with the new search string
     navigate({ search: newParams.toString() })
   }, [searchParams, navigate])

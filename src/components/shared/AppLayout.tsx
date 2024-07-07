@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const AppLayout = () => {
   return (
-    <div>
+    <div vaul-drawer-wrapper="" className=" bg-white">
       <Searching>
         <Header />
       </Searching>
