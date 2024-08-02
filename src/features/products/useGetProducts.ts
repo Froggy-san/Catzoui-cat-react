@@ -1,3 +1,70 @@
+import {
+  useInfiniteQuery,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
+import {
+  getProducts,
+  RetrunedValueFromProductsApi,
+} from '@/services/apiProducts'
+import { useSearchParams } from 'react-router-dom'
+import { PAGE_SIZE } from '@/utils/constants'
+
+export function useProducts() {
+  const queryClient = useQueryClient()
+
+  const [searchParams] = useSearchParams()
+
+  // filter
+  const filterValue = searchParams.get('filter') || 'all'
+
+  const filterRange = searchParams.get('range') || 'no-range'
+
+  const deals = searchParams.get('deals') || ''
+
+  const sortBy = searchParams.get('sortBy') || 'no-sort'
+  // pagination
+
+  // const page = !searchParams.get('page') ? 1 : Number(searchParams.get('page'))
+
+  const {
+    data,
+    isFetchingNextPage,
+    isFetching,
+    status,
+    error,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteQuery({
+    initialPageParam: 1,
+    queryKey: ['products', filterValue, filterRange, deals, sortBy],
+    getNextPageParam: (lastPageData: RetrunedValueFromProductsApi) => {
+      console.log(lastPageData.nextPage)
+      return lastPageData.nextPage
+    },
+    //@ts-ignore
+    queryFn: ({ pageParam = 1 }) =>
+      getProducts({
+        filterValue,
+        filterRange,
+        sortBy,
+        deals,
+        pageParam,
+      }),
+  })
+  return {
+    data,
+    isFetchingNextPage,
+    isFetching,
+    status,
+    error,
+    hasNextPage,
+    fetchNextPage,
+  }
+}
+
+/*
+
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { getProducts } from '@/services/apiProducts'
 import { useSearchParams } from 'react-router-dom'
@@ -66,3 +133,5 @@ export function useProducts() {
 
   return { isLoading, products, error, count }
 }
+
+*/

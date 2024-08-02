@@ -63,8 +63,11 @@ const ProductDetails = () => {
   useEffect(() => {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
+
   useSetItemFromStorage('rating', rating)
+
   useDocumentTitle(product?.at(0)?.name || '')
+
   const random = useMemo(() => {
     return randomYear(2001, 2024)
   }, [productId])

@@ -1,3 +1,4 @@
+import { Product } from '@/Types/type'
 import supabase, { supabaseUrl } from './supabase'
 import { PAGE_SIZE } from '@/utils/constants'
 export async function getProducts({
@@ -5,13 +6,13 @@ export async function getProducts({
   filterRange,
   deals,
   sortBy,
-  page,
+  pageParam,
 }: {
   filterValue: string
   filterRange: string
   sortBy: string
   deals: string
-  page: number
+  pageParam: number
 }) {
   /// 1. select everything from the Products table and select (id,product_id,image_url) from  another table that is related by a forgin key called ProductImages. aslo we are getting the count of the total products in the database.
   let query = supabase
@@ -58,8 +59,8 @@ export async function getProducts({
   }
 
   // pagination
-  if (page) {
-    const from = (page - 1) * PAGE_SIZE // (1-1) * 10 = 0
+  if (pageParam) {
+    const from = (pageParam - 1) * PAGE_SIZE // (1-1) * 10 = 0
 
     const to = from + PAGE_SIZE - 1 // 0 + 10 - 1 = 9
 
@@ -72,7 +73,21 @@ export async function getProducts({
     throw new Error(`Booking couldn't be loaded`)
   }
 
-  return { data, count }
+  const pageCount = count ? Math.ceil(count / PAGE_SIZE) : 0
+
+  return {
+    products: data,
+    amountOfPage: pageCount,
+    curretPage: pageParam,
+    nextPage: pageParam < pageCount ? pageParam + 1 : null,
+  }
+}
+
+export interface RetrunedValueFromProductsApi {
+  products: Product[]
+  count: number | null
+  currentPage: number
+  nextPage: number | null
 }
 
 // export async function getProducts() {

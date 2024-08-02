@@ -1,16 +1,31 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { useProducts } from './useGetProducts'
 import ProductItem from './ProductItem'
 import ProductLoading from './ProductLoading'
 import ProductMenuBar from './ProductMenuBar'
-import Pagination from '@/components/shared/Pagination'
 import Empty from '@/components/shared/Empty'
-
 import { CgSearchLoading } from 'react-icons/cg'
 import { ImSad2 } from 'react-icons/im'
+import { useInView } from 'react-intersection-observer'
 
 const ProductsList = () => {
-  const { isLoading, products, error, count } = useProducts()
+  const { ref, inView } = useInView()
+
+  const {
+    isFetchingNextPage,
+    data,
+    fetchNextPage,
+    error,
+    status,
+    hasNextPage,
+  } = useProducts()
+
+  useEffect(() => {
+    if (inView) fetchNextPage()
+  }, [inView])
+
+  const products = data?.pages.flatMap((data) => data.products)
+  const isLoading = status === 'pending'
 
   return (
     <div id="c" className="container my-20 px-4 xs:px-8">
@@ -30,20 +45,26 @@ const ProductsList = () => {
           message="Somthing went wrong..."
         />
       )}
-      <ul className={`product-list grid gap-4 px-0 xs:px-7  sm:px-0`}>
-        {isLoading && <LoadingProduct />}
-        {!isLoading && error && (
-          <p>
-            !something went wrong while loading the products, please refresh the
-            page.💥💥
-          </p>
-        )}
 
+      {status === 'error' && (
+        <p>
+          {error?.message ||
+            ` !something went wrong while loading the products, please refresh the
+            page.💥💥`}
+        </p>
+      )}
+      <ul className={`product-list grid gap-4 px-0 xs:px-7  sm:px-0`}>
         {products?.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
+        {(isFetchingNextPage || status === 'pending') && <LoadingProduct />}
       </ul>
-      <Pagination count={count} />
+      <div ref={ref} className=" mt-10">
+        {!isFetchingNextPage && !hasNextPage && (
+          <p className=" text-center">You have reach the end.</p>
+        )}
+      </div>
+      {/* <Pagination count={count} /> */}
     </div>
   )
 }
