@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useProducts } from './useGetProducts'
 import ProductItem from './ProductItem'
 import ProductLoading from './ProductLoading'
@@ -10,22 +10,25 @@ import { useInView } from 'react-intersection-observer'
 
 const ProductsList = () => {
   const { ref, inView } = useInView()
+  const [refresh, setRefresh] = useState(false)
 
   const {
     isFetchingNextPage,
     data,
     fetchNextPage,
+    isFetching,
     error,
     status,
     hasNextPage,
   } = useProducts()
 
+  const products = data?.pages.flatMap((data) => data.products)
+  const isLoading = isFetching || status === 'pending'
+  console.log(data, 'DDATA')
+  console.log(products, 'PRODUCTS')
   useEffect(() => {
     if (inView) fetchNextPage()
   }, [inView])
-
-  const products = data?.pages.flatMap((data) => data.products)
-  const isLoading = status === 'pending'
 
   return (
     <div id="c" className="container my-20 px-4 xs:px-8">

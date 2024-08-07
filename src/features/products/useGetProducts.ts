@@ -39,9 +39,9 @@ export function useProducts() {
     initialPageParam: 1,
     queryKey: ['products', filterValue, filterRange, deals, sortBy],
     getNextPageParam: (lastPageData: RetrunedValueFromProductsApi) => {
-      console.log(lastPageData.nextPage)
       return lastPageData.nextPage
     },
+
     //@ts-ignore
     queryFn: ({ pageParam = 1 }) =>
       getProducts({
@@ -52,6 +52,8 @@ export function useProducts() {
         pageParam,
       }),
   })
+
+  console.log(data, 'DATA FROM THE HOOK IT SELF')
   return {
     data,
     isFetchingNextPage,

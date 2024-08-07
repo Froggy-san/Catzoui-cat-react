@@ -134,8 +134,6 @@ const ProductForm = ({ product, id }: { id?: string; product?: Product }) => {
         { newProduct, images },
         {
           onSuccess: () => {
-            navigate(-1)
-
             toast('Product added successfuly!', {
               description: (
                 <div className="flex items-center space-x-2">
