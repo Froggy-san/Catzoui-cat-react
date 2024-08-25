@@ -9,7 +9,7 @@ export function useGetProductByCategory(category: string) {
   const productId = searchParams.get('product') || ''
 
   const {
-    isLoading: relatedProductLoading,
+    isLoading,
     data: relatedProducts,
     error: relatedError,
   } = useQuery({
@@ -21,5 +21,5 @@ export function useGetProductByCategory(category: string) {
     enabled: !!category,
   })
 
-  return { relatedProductLoading, relatedProducts, relatedError }
+  return { isLoading, relatedProducts, relatedError }
 }

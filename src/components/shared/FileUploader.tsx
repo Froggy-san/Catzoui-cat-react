@@ -25,7 +25,6 @@ const FileUploader = ({
     if (mediaUrl) {
       setFile(mediaUrl)
       fieldChange(mediaUrl)
-      console.log(mediaUrl)
     }
   }, [])
 

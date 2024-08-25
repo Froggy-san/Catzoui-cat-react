@@ -102,7 +102,7 @@ const ProductOperations = ({
   function handleInc() {
     if (count === product?.stock) return
     if (quantityInCart && product && quantityInCart + count >= product?.stock)
-      return toast('Amount acceeded', {
+      return toast('Amount exceeded', {
         description: (
           <div className="flex items-center space-x-2">
             <span>

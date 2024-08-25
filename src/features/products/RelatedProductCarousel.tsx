@@ -5,6 +5,8 @@ import { flushSync } from 'react-dom'
 
 import { formatCurrency } from '@/utils/helper'
 import { useSearchParams } from 'react-router-dom'
+import { useGetProductByCategory } from './useGetProductByCategory'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 const TWEEN_FACTOR = 1.2
 
@@ -29,11 +31,12 @@ type PropType = {
   slides: number[]
   handleScrollUp: () => void
   options?: EmblaOptionsType
-  relatedProducts: RelatedProdcutsProps[] | undefined
+  category?: string
 }
 
 const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options, relatedProducts, handleScrollUp } = props
+  const { slides, options, category, handleScrollUp } = props
+  const { relatedProducts, isLoading } = useGetProductByCategory(category || '')
   const [emblaRef, emblaApi] = useEmblaCarousel(options)
   const [tweenValues, setTweenValues] = useState<number[]>([])
 
@@ -78,6 +81,18 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     emblaApi.on('reInit', onScroll)
   }, [emblaApi, onScroll])
 
+  if (isLoading)
+    return (
+      <div className=" flex items-center justify-center">
+        <div className="flex h-[100px] w-[100px]  flex-col items-center justify-center rounded-xl bg-oldCatBg  px-3 py-5 ">
+          <AiOutlineLoading3Quarters className=" animate-spin" size={50} />
+          <h1>Loading...</h1>
+        </div>
+      </div>
+    )
+
+  if (!relatedProducts?.length)
+    return <h1 className="mt-7 text-xl  ">No related products...</h1>
   return (
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>

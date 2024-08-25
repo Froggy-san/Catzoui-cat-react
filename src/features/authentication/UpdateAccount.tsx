@@ -51,7 +51,7 @@ const UpdateAccount = () => {
     const currentValues = form.getValues()
     return !_.isEqual(currentValues, prevValues.current) // Use lodash for deep comparison
   }
-  // console.log(prevValues, 'prevValues')
+
   function onSubmit(formData: z.infer<typeof updateUserSchema>) {
     try {
       // if there hasn't been changes , return.

@@ -42,7 +42,7 @@ const CartItem = ({
     .filter((el) => el.id === item.id)
     .reduce((sum, currEl) => sum + currEl.quantity, 0)
 
-  // console.log(allSimilarProduct, "alllasdasdasdladlasdlasldal");
+
   const dispatch = useDispatch()
 
   function handleCloseDialog() {
@@ -53,7 +53,7 @@ const CartItem = ({
     // if (count === product?.stock) return;
     // setCount((count) => count + 1);
     if (allSimilarProductQuantity >= item.stock)
-      return toast('Amount acceeded', {
+      return toast('Amount exceeded', {
         description: (
           <div className="flex items-center space-x-2">
             <span>

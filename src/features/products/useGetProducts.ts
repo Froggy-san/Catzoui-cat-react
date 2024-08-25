@@ -53,7 +53,6 @@ export function useProducts() {
       }),
   })
 
-  console.log(data, 'DATA FROM THE HOOK IT SELF')
   return {
     data,
     isFetchingNextPage,

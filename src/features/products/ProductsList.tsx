@@ -24,8 +24,7 @@ const ProductsList = () => {
 
   const products = data?.pages.flatMap((data) => data.products)
   const isLoading = isFetching || status === 'pending'
-  console.log(data, 'DDATA')
-  console.log(products, 'PRODUCTS')
+
   useEffect(() => {
     if (inView) fetchNextPage()
   }, [inView])

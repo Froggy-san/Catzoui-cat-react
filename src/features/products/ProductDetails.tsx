@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 
 import ClickAwayListener from '@mui/material/ClickAwayListener'
 import { useNavigate, useSearchParams } from 'react-router-dom'
@@ -43,9 +43,9 @@ const ProductDetails = () => {
   const productId = searchParams.get('product')
 
   const { product, isLoading, error } = useGetProductById(productId || '')
-  const { relatedProducts } = useGetProductByCategory(
-    product?.at(0)?.category || ''
-  )
+  // const { relatedProducts } = useGetProductByCategory(
+  //   product?.at(0)?.category || ''
+  // )
   const { isDeleting } = useDeleteProduct()
   const { user } = useUser()
 
@@ -64,6 +64,12 @@ const ProductDetails = () => {
     sessionStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
+  useEffect(() => {
+    return () => {
+      const body = document.querySelector('body')
+      if (body) body.style.backgroundColor = 'white' /// when closing the drawer the background color of the body stays black, thherefore we need to make it white agian after closing the drawer.
+    }
+  }, [searchParams])
   useSetItemFromStorage('rating', rating)
 
   useDocumentTitle(product?.at(0)?.name || '')
@@ -108,10 +114,6 @@ const ProductDetails = () => {
     // Create a new URLSearchParams object without the product parameter
     const newParams = new URLSearchParams(searchParams)
     newParams.delete('product')
-
-    const body = document.querySelector('body')
-    if (body) body.style.backgroundColor = 'white' /// when closing the drawer the background color of the body stays black, thherefore we need to make it white agian after closing the drawer.
-
     // Navigate to the same pathname with the new search string
     navigate({ search: newParams.toString() })
   }, [searchParams, navigate])
@@ -130,7 +132,10 @@ const ProductDetails = () => {
       {/*Please notice how we used the ClickAwayListner which allows us to close the element inside it if we click out side obviously. please note we have a function that does that already it's called useOutsideClick and it works exactly like the ClickAwayListner i commented the hook up there and deleted the ref on the DrawerContant component. */}
 
       <ClickAwayListener onClickAway={closeDrawer}>
-        <DrawerContent className="h-[94dvh] rounded-t-3xl  pb-4 focus:outline-none  ">
+        <DrawerContent
+          draggable={false}
+          className=" h-[94dvh]  rounded-t-3xl pb-4  focus:outline-none "
+        >
           <CloseButton
             className="absolute right-5 top-5 z-50 hidden cursor-pointer md:block"
             onClick={closeDrawer}
@@ -273,11 +278,11 @@ const ProductDetails = () => {
                 <EmblaCarousel
                   handleScrollUp={handleScrollUp}
                   slides={[1, 2, 3, 4, 5]}
-                  relatedProducts={relatedProducts}
+                  category={product?.at(0)?.category}
                 />
-                {!relatedProducts?.length && (
+                {/* {!relatedProducts?.length && (
                   <h1 className="text-xl">No related products...</h1>
-                )}
+                )} */}
               </div>
               {user?.user_metadata.privileges ? (
                 <AdminControl images={images} productId={productId} />

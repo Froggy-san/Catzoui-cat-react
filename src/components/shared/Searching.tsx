@@ -52,7 +52,6 @@ const Searching = ({ children }: { children: React.ReactNode }) => {
 
   const results = seachResults || []
 
-  console.log(results)
   const handleOpen = (e?: MouseEvent) => {
     e?.stopPropagation()
     setIsOpen((is) => !is)
