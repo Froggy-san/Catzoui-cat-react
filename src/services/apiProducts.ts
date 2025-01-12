@@ -148,22 +148,38 @@ export async function createProduct({
   if (productError) throw productError
 
   // 4.  now that we have the image paths/urls we can upload it to the ProductImages table along side the reladted product to it as showen below.
-  imagePaths.forEach(async (path) => {
+  // imagePaths.forEach(async (path) => {
+  //   const { error: imageError } = await supabase
+  //     .from('ProductImages')
+  //     .insert([{ product_id: data[0].id, image_url: path }])
+  //     .select()
+
+  //   if (imageError) throw new Error(`Had Trouble uploading the images`)
+  // })
+
+  for (let i = 0; i < imagePaths.length; i++) {
     const { error: imageError } = await supabase
       .from('ProductImages')
-      .insert([{ product_id: data[0].id, image_url: path }])
+      .insert([{ product_id: data[0].id, image_url: imagePaths[i] }])
       .select()
 
     if (imageError) throw new Error(`Had Trouble uploading the images`)
-  })
+  }
 
   // 5. upload the files to the storage.
-  images.forEach(async (imageFile, i) => {
+  // images.forEach(async (imageFile, i) => {
+  //   const { error } = await supabase.storage
+  //     .from('catzoui')
+  //     .upload(imageNames[i], imageFile)
+  //   if (error) throw new Error(`Truble uploading files`)
+  // })
+
+  for (let i = 0; i < imagePaths.length; i++) {
     const { error } = await supabase.storage
       .from('catzoui')
-      .upload(imageNames[i], imageFile)
-    if (error) throw new Error(`Truble uploading files`)
-  })
+      .upload(imageNames[i], images[i])
+    if (error) throw new Error(error.message)
+  }
 
   return data
 }
