@@ -92,6 +92,9 @@
 }
 
 @layer utilities {
+  .gallary-scroll-bar::-webkit-scrollbar {
+    width: 2px;
+  }
   .image-zoom {
     position: absolute;
     left: 100%;
