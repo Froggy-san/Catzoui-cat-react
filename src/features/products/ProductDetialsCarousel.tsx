@@ -78,7 +78,7 @@ const ProductDetialsCarousel = React.forwardRef(function ProductDetialsCarousel(
 
   return (
     <div className="flex  justify-center gap-2">
-      <div className=" flex  h-fit  max-h-[200px] min-w-[65px]  max-w-[100px] flex-col  gap-1 xs:max-h-[500px] xs:min-w-[70px] ">
+      <div className=" flex  h-fit  max-h-[200px] min-w-[65px]  max-w-[110px] flex-col  gap-1 xs:max-h-[500px] xs:min-w-[70px] ">
         <div className="    gallary-scroll-bar flex-1 space-y-2 overflow-y-auto  px-2 py-3    ">
           {imagesUrl?.map((image, index) => (
             <Card
